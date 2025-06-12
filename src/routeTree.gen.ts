@@ -9,15 +9,47 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ZkouskaRouteImport } from './routes/zkouska'
+import { Route as WeatherRouteRouteImport } from './routes/weather/route'
+import { Route as TodologgedRouteRouteImport } from './routes/todologged/route'
+import { Route as TodoRouteRouteImport } from './routes/todo/route'
+import { Route as OthersRouteRouteImport } from './routes/others/route'
+import { Route as LoginRouteRouteImport } from './routes/login/route'
+import { Route as CalendarRouteRouteImport } from './routes/calendar/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
+import { Route as OthersSpalickyRouteRouteImport } from './routes/others/spalicky/route'
+import { Route as OthersPokemonsRouteRouteImport } from './routes/others/pokemons/route'
+import { Route as OthersGradesRouteRouteImport } from './routes/others/grades/route'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
-import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
 
-const ZkouskaRoute = ZkouskaRouteImport.update({
-  id: '/zkouska',
-  path: '/zkouska',
+const WeatherRouteRoute = WeatherRouteRouteImport.update({
+  id: '/weather',
+  path: '/weather',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TodologgedRouteRoute = TodologgedRouteRouteImport.update({
+  id: '/todologged',
+  path: '/todologged',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TodoRouteRoute = TodoRouteRouteImport.update({
+  id: '/todo',
+  path: '/todo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OthersRouteRoute = OthersRouteRouteImport.update({
+  id: '/others',
+  path: '/others',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRouteRoute = LoginRouteRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalendarRouteRoute = CalendarRouteRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -30,78 +62,169 @@ const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
   path: '/demo/tanstack-query',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OthersSpalickyRouteRoute = OthersSpalickyRouteRouteImport.update({
+  id: '/spalicky',
+  path: '/spalicky',
+  getParentRoute: () => OthersRouteRoute,
+} as any)
+const OthersPokemonsRouteRoute = OthersPokemonsRouteRouteImport.update({
+  id: '/pokemons',
+  path: '/pokemons',
+  getParentRoute: () => OthersRouteRoute,
+} as any)
+const OthersGradesRouteRoute = OthersGradesRouteRouteImport.update({
+  id: '/grades',
+  path: '/grades',
+  getParentRoute: () => OthersRouteRoute,
+} as any)
 const DemoStartServerFuncsRoute = DemoStartServerFuncsRouteImport.update({
   id: '/demo/start/server-funcs',
   path: '/demo/start/server-funcs',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoStartApiRequestRoute = DemoStartApiRequestRouteImport.update({
-  id: '/demo/start/api-request',
-  path: '/demo/start/api-request',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/zkouska': typeof ZkouskaRoute
+  '/calendar': typeof CalendarRouteRoute
+  '/login': typeof LoginRouteRoute
+  '/others': typeof OthersRouteRouteWithChildren
+  '/todo': typeof TodoRouteRoute
+  '/todologged': typeof TodologgedRouteRoute
+  '/weather': typeof WeatherRouteRoute
+  '/others/grades': typeof OthersGradesRouteRoute
+  '/others/pokemons': typeof OthersPokemonsRouteRoute
+  '/others/spalicky': typeof OthersSpalickyRouteRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/zkouska': typeof ZkouskaRoute
+  '/calendar': typeof CalendarRouteRoute
+  '/login': typeof LoginRouteRoute
+  '/others': typeof OthersRouteRouteWithChildren
+  '/todo': typeof TodoRouteRoute
+  '/todologged': typeof TodologgedRouteRoute
+  '/weather': typeof WeatherRouteRoute
+  '/others/grades': typeof OthersGradesRouteRoute
+  '/others/pokemons': typeof OthersPokemonsRouteRoute
+  '/others/spalicky': typeof OthersSpalickyRouteRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/zkouska': typeof ZkouskaRoute
+  '/calendar': typeof CalendarRouteRoute
+  '/login': typeof LoginRouteRoute
+  '/others': typeof OthersRouteRouteWithChildren
+  '/todo': typeof TodoRouteRoute
+  '/todologged': typeof TodologgedRouteRoute
+  '/weather': typeof WeatherRouteRoute
+  '/others/grades': typeof OthersGradesRouteRoute
+  '/others/pokemons': typeof OthersPokemonsRouteRoute
+  '/others/spalicky': typeof OthersSpalickyRouteRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/zkouska'
+    | '/calendar'
+    | '/login'
+    | '/others'
+    | '/todo'
+    | '/todologged'
+    | '/weather'
+    | '/others/grades'
+    | '/others/pokemons'
+    | '/others/spalicky'
     | '/demo/tanstack-query'
-    | '/demo/start/api-request'
     | '/demo/start/server-funcs'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/zkouska'
+    | '/calendar'
+    | '/login'
+    | '/others'
+    | '/todo'
+    | '/todologged'
+    | '/weather'
+    | '/others/grades'
+    | '/others/pokemons'
+    | '/others/spalicky'
     | '/demo/tanstack-query'
-    | '/demo/start/api-request'
     | '/demo/start/server-funcs'
   id:
     | '__root__'
     | '/'
-    | '/zkouska'
+    | '/calendar'
+    | '/login'
+    | '/others'
+    | '/todo'
+    | '/todologged'
+    | '/weather'
+    | '/others/grades'
+    | '/others/pokemons'
+    | '/others/spalicky'
     | '/demo/tanstack-query'
-    | '/demo/start/api-request'
     | '/demo/start/server-funcs'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ZkouskaRoute: typeof ZkouskaRoute
+  CalendarRouteRoute: typeof CalendarRouteRoute
+  LoginRouteRoute: typeof LoginRouteRoute
+  OthersRouteRoute: typeof OthersRouteRouteWithChildren
+  TodoRouteRoute: typeof TodoRouteRoute
+  TodologgedRouteRoute: typeof TodologgedRouteRoute
+  WeatherRouteRoute: typeof WeatherRouteRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
-  DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
   DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/zkouska': {
-      id: '/zkouska'
-      path: '/zkouska'
-      fullPath: '/zkouska'
-      preLoaderRoute: typeof ZkouskaRouteImport
+    '/weather': {
+      id: '/weather'
+      path: '/weather'
+      fullPath: '/weather'
+      preLoaderRoute: typeof WeatherRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/todologged': {
+      id: '/todologged'
+      path: '/todologged'
+      fullPath: '/todologged'
+      preLoaderRoute: typeof TodologgedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/todo': {
+      id: '/todo'
+      path: '/todo'
+      fullPath: '/todo'
+      preLoaderRoute: typeof TodoRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/others': {
+      id: '/others'
+      path: '/others'
+      fullPath: '/others'
+      preLoaderRoute: typeof OthersRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -118,6 +241,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoTanstackQueryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/others/spalicky': {
+      id: '/others/spalicky'
+      path: '/spalicky'
+      fullPath: '/others/spalicky'
+      preLoaderRoute: typeof OthersSpalickyRouteRouteImport
+      parentRoute: typeof OthersRouteRoute
+    }
+    '/others/pokemons': {
+      id: '/others/pokemons'
+      path: '/pokemons'
+      fullPath: '/others/pokemons'
+      preLoaderRoute: typeof OthersPokemonsRouteRouteImport
+      parentRoute: typeof OthersRouteRoute
+    }
+    '/others/grades': {
+      id: '/others/grades'
+      path: '/grades'
+      fullPath: '/others/grades'
+      preLoaderRoute: typeof OthersGradesRouteRouteImport
+      parentRoute: typeof OthersRouteRoute
+    }
     '/demo/start/server-funcs': {
       id: '/demo/start/server-funcs'
       path: '/demo/start/server-funcs'
@@ -125,21 +269,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoStartServerFuncsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/start/api-request': {
-      id: '/demo/start/api-request'
-      path: '/demo/start/api-request'
-      fullPath: '/demo/start/api-request'
-      preLoaderRoute: typeof DemoStartApiRequestRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
+interface OthersRouteRouteChildren {
+  OthersGradesRouteRoute: typeof OthersGradesRouteRoute
+  OthersPokemonsRouteRoute: typeof OthersPokemonsRouteRoute
+  OthersSpalickyRouteRoute: typeof OthersSpalickyRouteRoute
+}
+
+const OthersRouteRouteChildren: OthersRouteRouteChildren = {
+  OthersGradesRouteRoute: OthersGradesRouteRoute,
+  OthersPokemonsRouteRoute: OthersPokemonsRouteRoute,
+  OthersSpalickyRouteRoute: OthersSpalickyRouteRoute,
+}
+
+const OthersRouteRouteWithChildren = OthersRouteRoute._addFileChildren(
+  OthersRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ZkouskaRoute: ZkouskaRoute,
+  CalendarRouteRoute: CalendarRouteRoute,
+  LoginRouteRoute: LoginRouteRoute,
+  OthersRouteRoute: OthersRouteRouteWithChildren,
+  TodoRouteRoute: TodoRouteRoute,
+  TodologgedRouteRoute: TodologgedRouteRoute,
+  WeatherRouteRoute: WeatherRouteRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
-  DemoStartApiRequestRoute: DemoStartApiRequestRoute,
   DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,
 }
 export const routeTree = rootRouteImport

@@ -5,7 +5,7 @@ import { createServerFn } from "@tanstack/react-start";
 const filePath = "count.txt";
 
 async function readCount() {
-  return parseInt(
+  return Number.parseInt(
     await fs.promises.readFile(filePath, "utf-8").catch(() => "0"),
   );
 }

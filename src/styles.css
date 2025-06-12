@@ -13,3 +13,47 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1a1f2a;
+}
+
+html {
+  color: rgb(249, 249, 249);
+}
+
+@theme {
+  --color-primary-50: #f6f7f9;
+  --color-primary-100: #ebedf3;
+  --color-primary-200: #d3d7e4;
+  --color-primary-300: #adb5cc;
+  --color-primary-400: #808db0;
+  --color-primary-500: #606f97;
+  --color-primary-600: #4c577d;
+  --color-primary-700: #3e4766;
+  --color-primary-800: #2b2f44;
+  --color-primary-900: #262939;
+  --color-primary-950: #1f212e;
+  --color-primary-1000: #1a1f2a;
+
+  --color-secondary-50: #edfbff;
+  --color-secondary-100: #d6f5ff;
+  --color-secondary-200: #b5efff;
+  --color-secondary-300: #83e8ff;
+  --color-secondary-400: #48d8ff;
+  --color-secondary-500: #1ebcff;
+  --color-secondary-600: #1ebcff;
+  --color-secondary-700: #018dff;
+  --color-secondary-800: #086bc5;
+  --color-secondary-900: #0d5b9b;
+  --color-secondary-950: #0e375d;
+}

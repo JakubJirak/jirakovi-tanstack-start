@@ -13,15 +13,19 @@ const getUsers = createServerFn().handler(() => {
 });
 
 function TanStackQueryDemo() {
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: getUsers,
     initialData: [],
+    enabled: false,
   });
 
   return (
     <div className="p-4">
       <h1 className="text-2xl mb-4">People list</h1>
+      <button type="button" onClick={() => refetch()}>
+        refetch
+      </button>
       <ul>
         {data.map((user) => (
           <li key={user.id}>{user.username}</li>

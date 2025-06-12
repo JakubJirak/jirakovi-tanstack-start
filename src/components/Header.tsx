@@ -1,25 +1,9 @@
-import { Link } from "@tanstack/react-router";
-
-export default function Header() {
+function Header() {
   return (
-    <header className="p-2 flex gap-2 bg-white text-black justify-between">
-      <nav className="flex flex-row">
-        <div className="px-2 font-bold">
-          <Link to="/">Home</Link>
-        </div>
-
-        <div className="px-2 font-bold">
-          <Link to="/demo/start/server-funcs">Start - Server Functions</Link>
-        </div>
-
-        <div className="px-2 font-bold">
-          <Link to="/demo/start/api-request">Start - API Request</Link>
-        </div>
-
-        <div className="px-2 font-bold">
-          <Link to="/demo/tanstack-query">TanStack Query</Link>
-        </div>
-      </nav>
+    <header className="[grid-area:header] border-b-2 border-primary-800 flex items-center justify-center">
+      <h1 className="text-2xl">Header</h1>
     </header>
   );
 }
+
+export default Header;
