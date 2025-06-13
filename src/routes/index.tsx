@@ -2,7 +2,7 @@ import MobileHeaders from "@/components/dashboard/MobileHeaders.tsx";
 import OthersCom from "@/components/dashboard/others/OthersCom.tsx";
 import StatsCom from "@/components/dashboard/stats/StatsCom.tsx";
 import TodolistCom from "@/components/dashboard/todo/TodolistCom.tsx";
-import TodoInput from "@/routes/todo/components/TodoInput.tsx";
+import TodoInput from "@/components/todo/TodoInput.tsx";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { RouteComponent as Calendar } from "../routes/calendar/route.tsx";

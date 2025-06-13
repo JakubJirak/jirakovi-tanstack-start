@@ -1,3 +1,4 @@
+import OthersCard from "@/components/others/OthersCard.tsx";
 import { ostatniData } from "@/data/ostatni-data.ts";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
@@ -9,7 +10,6 @@ import {
 } from "react-icons/io";
 import { PiBowlFood } from "react-icons/pi";
 import { SiAnimalplanet } from "react-icons/si";
-import OstatniCard from "./OthersCard.tsx";
 
 const iconMap: Record<string, IconType> = {
   spalicky: PiBowlFood,
@@ -18,7 +18,7 @@ const iconMap: Record<string, IconType> = {
   kalendar: FaRegCalendarAlt,
 };
 
-export const Route = createFileRoute("/others")({
+export const Route = createFileRoute("/others/")({
   component: RouteComponent,
 });
 
@@ -33,7 +33,7 @@ export function RouteComponent() {
         const IconComponent = iconMap[ostatni.id] || DefaultIcon;
         return (
           // biome-ignore lint/suspicious/noArrayIndexKey: budu pouzivat index jako key a nikdo me nezastavi
-          <OstatniCard icon={<IconComponent />} {...ostatni} key={index} />
+          <OthersCard icon={<IconComponent />} {...ostatni} key={index} />
         );
       })}
     </div>

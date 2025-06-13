@@ -1,4 +1,4 @@
-import TodoCom from "@/routes/todo/components/TodoCom.tsx";
+import TodoCom from "@/components/todo/TodoCom.tsx";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
 

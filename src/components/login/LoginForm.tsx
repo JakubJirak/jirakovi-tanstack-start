@@ -1,32 +1,49 @@
 import { useLoginContext } from "@/data/Context/LoginContext.tsx";
+import { db } from "@/db";
+import { users } from "@/db/schema.ts";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate } from "@tanstack/react-router";
+import { createServerFn } from "@tanstack/react-start";
+import { eq } from "drizzle-orm";
 import { useEffect, useState } from "react";
 import type React from "react";
 
-// interface User {
-//   id: number;
-//   username: string;
-//   password: string;
-// }
+interface User {
+  id: number;
+  username: string | null;
+  password: string | null;
+}
+
+const getUser = createServerFn({ method: "GET" })
+  .validator((data: { username: string }) => data)
+  .handler(async ({ data }) => {
+    const rows = await db
+      .select()
+      .from(users)
+      .where(eq(users.username, data.username));
+    return rows[0];
+  });
 
 const LoginForm = () => {
   const { username, setUsername, password, setPassword, setLogged, setUserId } =
     useLoginContext();
   const [valid, setValid] = useState<boolean>(true);
-  const navigate = useNavigate();
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setPassword("");
   }, []);
 
+  const { refetch, error } = useQuery<User | undefined>({
+    queryKey: ["users", { data: username }],
+    queryFn: () => getUser({ data: { username } }),
+    enabled: false,
+  });
+
   const validate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const refData = await refetch();
     if (refData.data?.password === password) {
-      // @ts-ignore - ZKONTROLOVAT V BUDOUCNU
-      navigate("/todologged");
+      console.log("prihlasen");
       setLogged(true);
       setValid(true);
       setUserId(refData.data.id);
@@ -71,12 +88,12 @@ const LoginForm = () => {
         </button>
       </form>
 
-      {/* error ||
+      {error ||
         (!valid && (
           <p className="text-center text-red-500 mt-5">
             Nesprávné uživatelské jméno nebo heslo!
           </p>
-        )) */}
+        ))}
     </>
   );
 };

@@ -6,7 +6,7 @@ export const ostatniData = [
     header: "Špalíčky",
     longHead: "Výpočet ingrediencí pro špalíčky",
     desc: "Pomocí množství brambor vypočítá množství dalších ingrediencí pro špalíčky.",
-    path: "/others/spalicky",
+    path: linkOptions({ to: "/others/spalicky" }).to,
   },
   {
     id: "pokemoni",

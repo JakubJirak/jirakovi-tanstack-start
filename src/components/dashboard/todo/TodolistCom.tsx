@@ -1,4 +1,4 @@
-import TodoListData from "@/routes/todo/components/TodoListData.tsx";
+import TodoListData from "@/components/todo/TodoListData.tsx";
 
 const TodolistCom = () => {
   return (
