@@ -2,6 +2,7 @@ import { useLoginContext } from "@/data/Context/LoginContext.tsx";
 import { db } from "@/db";
 import { users } from "@/db/schema.ts";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
 import { useEffect, useState } from "react";
@@ -27,13 +28,14 @@ const LoginForm = () => {
   const { username, setUsername, password, setPassword, setLogged, setUserId } =
     useLoginContext();
   const [valid, setValid] = useState<boolean>(true);
+  const navigate = useNavigate();
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setPassword("");
   }, []);
 
-  const { refetch, error } = useQuery<User | undefined>({
+  const { refetch, error, isLoading } = useQuery<User | undefined>({
     queryKey: ["users", { data: username }],
     queryFn: () => getUser({ data: { username } }),
     enabled: false,
@@ -44,9 +46,10 @@ const LoginForm = () => {
     const refData = await refetch();
     if (refData.data?.password === password) {
       console.log("prihlasen");
+      navigate({ to: "/todologged" });
       setLogged(true);
       setValid(true);
-      setUserId(refData.data.id);
+      setUserId(String(refData.data.id));
     } else {
       setValid(false);
     }
@@ -84,7 +87,7 @@ const LoginForm = () => {
           type="submit"
           className="bg-secondary-700 mt-2 py-1 rounded-full hover:bg-secondary-800 cursor-pointer transition duration-200"
         >
-          {/* isLoading ? "Načítání..." : "Přihlásit se" */}Prihlasit
+          {isLoading ? "Načítání..." : "Přihlásit se"}
         </button>
       </form>
 

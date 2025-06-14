@@ -3,9 +3,9 @@ import { boolean, int, mysqlTable, varchar } from "drizzle-orm/mysql-core";
 
 export const todos = mysqlTable("todo", {
   id: int("id").primaryKey().autoincrement(),
-  text: varchar("text", { length: 1500 }),
-  date: varchar("date", { length: 15 }),
-  isDone: boolean("isDone"),
+  text: varchar("text", { length: 1500 }).notNull(),
+  date: varchar("date", { length: 15 }).notNull(),
+  isDone: boolean("isDone").notNull(),
   userId: int("userId").references(() => users.id),
 });
 

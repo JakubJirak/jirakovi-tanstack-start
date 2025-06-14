@@ -14,8 +14,8 @@ interface LoginContextType {
   setLogged: (logged: boolean) => void;
   data: object[];
   setData: (data: object[]) => void;
-  userId: number | undefined;
-  setUserId: (userId: number | undefined) => void;
+  userId: string;
+  setUserId: (userId: string) => void;
 }
 
 const LoginContext = createContext<LoginContextType | undefined>(undefined);
@@ -33,7 +33,7 @@ export const LoginProvider = ({ children }: PropsWithChildren) => {
   const [password, setPassword] = useState<string>("");
   const [logged, setLogged] = useState<boolean>(false);
   const [data, setData] = useState<object[]>([]);
-  const [userId, setUserId] = useState<number | undefined>();
+  const [userId, setUserId] = useState<string>("");
 
   return (
     <LoginContext.Provider
