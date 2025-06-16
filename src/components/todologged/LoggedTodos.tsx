@@ -23,14 +23,14 @@ const fetchData = createServerFn({ method: "GET" })
     return todosUser;
   });
 
-const deleteData = createServerFn({ method: "GET" })
+const deleteData = createServerFn({ method: "POST" })
   .validator((data: { id: number }) => data)
   .handler(async ({ data }) => {
     await db.delete(todos).where(eq(todos.id, data.id)).execute();
     return true;
   });
 
-const updateData = createServerFn({ method: "GET" })
+const updateData = createServerFn({ method: "POST" })
   .validator((data: { id: number; isDone: boolean }) => data)
   .handler(async ({ data }) => {
     await db

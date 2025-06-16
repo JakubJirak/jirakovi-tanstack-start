@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/test-start.iml" filepath="$PROJECT_DIR$/.idea/test-start.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/jirakovi-tanstack-start.iml" filepath="$PROJECT_DIR$/.idea/jirakovi-tanstack-start.iml" />
     </modules>
   </component>
 </project>
