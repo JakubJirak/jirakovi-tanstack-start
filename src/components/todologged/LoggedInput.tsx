@@ -97,7 +97,7 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
           Zadejte datum
         </label>
         <input
-          className="mb-6 bg-primary-800 py-2 px-2 rounded-lg focus:outline-none
+          className="mb-6 w-full bg-primary-800 py-2 px-2 rounded-lg focus:outline-none
                 md:w-40 md:my-0 md:mb-0"
           placeholder="Datum..."
           type="date"
@@ -124,13 +124,13 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
       </form>
       <button
         type="button"
-        className="bg-secondary-800 flex rounded-full ml-3 mr-1 hover:bg-secondary-900 cursor-pointer transition duration-200 z-50 fixed bottom-8 right-7
+        className="bg-secondary-800 flex rounded-full ml-3 mr-1 hover:bg-secondary-900 cursor-pointer transition duration-200 z-10 fixed bottom-8 right-7
                 md:hidden"
         onClick={() => {
           setMobileShow(!mobileShow);
         }}
       >
-        <span className="w-17 h-17 flex items-center justify-center text-7xl font-light">
+        <span className="w-17 relative z-17 h-17 flex items-center justify-center text-7xl font-light">
           +
         </span>
       </button>
