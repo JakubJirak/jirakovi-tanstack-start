@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev --port 3000",
-    "start": "node .output/server/index.mjs",
-    "build": "vite build",
+    "start": "bun run .output/server/index.mjs",
+    "build": "tsc --noEmit && NITRO_PRESET=bun vite build",
     "serve": "vite preview",
     "test": "vitest run",
     "format": "biome format",
