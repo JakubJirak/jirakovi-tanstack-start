@@ -55,7 +55,7 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
     addUserMutation();
     setTimeout(() => {
       setFetchAgain(!fetchAgain);
-    }, 50);
+    }, 200);
     setInpDate("");
     setInpValue("");
   };
