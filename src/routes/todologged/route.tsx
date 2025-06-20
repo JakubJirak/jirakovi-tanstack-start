@@ -1,7 +1,7 @@
 import LoggedInput from "@/components/todologged/LoggedInput.tsx";
 import LoggedTodos from "@/components/todologged/LoggedTodos.tsx";
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { useLoginContext } from "../../data/Context/LoginContext.tsx";
 
 export const Route = createFileRoute("/todologged")({
@@ -11,6 +11,14 @@ export const Route = createFileRoute("/todologged")({
 function RouteComponent() {
   const { logged } = useLoginContext();
   const [fetchAgain, setFetchAgain] = useState(false);
+  const navigate = useNavigate();
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: nechapu co se ti nelibi bro
+  useEffect(() => {
+    if (!logged) {
+      navigate({ to: "/login" });
+    }
+  }, []);
 
   return (
     <div>
@@ -25,8 +33,6 @@ function RouteComponent() {
           </div>
         </div>
       )}
-
-      {!logged && <p>Nejprve se musíš přihlásit</p>}
     </div>
   );
 }

@@ -33,7 +33,7 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
   const [inpValue, setInpValue] = useState("");
   const [inpDate, setInpDate] = useState("");
   const [mobileShow, setMobileShow] = useState(false);
-  const { userId, username } = useLoginContext();
+  const { userId } = useLoginContext();
 
   const mutationTodos = useMutation({
     mutationFn: addTodo,
@@ -69,10 +69,6 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
           setMobileShow(!mobileShow);
         }}
       />
-
-      <h1 className="text-xl text-center pt-4 md:hidden">
-        Todos uživatele {username}
-      </h1>
 
       <form
         onSubmit={handleAdd}
