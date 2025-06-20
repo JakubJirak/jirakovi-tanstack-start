@@ -13,7 +13,6 @@ import { createServerRootRoute } from '@tanstack/react-start/server'
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WeatherRouteRouteImport } from './routes/weather/route'
 import { Route as TodologgedRouteRouteImport } from './routes/todologged/route'
-import { Route as TodoRouteRouteImport } from './routes/todo/route'
 import { Route as LoginRouteRouteImport } from './routes/login/route'
 import { Route as CalendarRouteRouteImport } from './routes/calendar/route'
 import { Route as IndexRouteImport } from './routes/index'
@@ -36,11 +35,6 @@ const WeatherRouteRoute = WeatherRouteRouteImport.update({
 const TodologgedRouteRoute = TodologgedRouteRouteImport.update({
   id: '/todologged',
   path: '/todologged',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TodoRouteRoute = TodoRouteRouteImport.update({
-  id: '/todo',
-  path: '/todo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRouteRoute = LoginRouteRouteImport.update({
@@ -103,7 +97,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/calendar': typeof CalendarRouteRoute
   '/login': typeof LoginRouteRoute
-  '/todo': typeof TodoRouteRoute
   '/todologged': typeof TodologgedRouteRoute
   '/weather': typeof WeatherRouteRoute
   '/others/grades': typeof OthersGradesRouteRoute
@@ -118,7 +111,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/calendar': typeof CalendarRouteRoute
   '/login': typeof LoginRouteRoute
-  '/todo': typeof TodoRouteRoute
   '/todologged': typeof TodologgedRouteRoute
   '/weather': typeof WeatherRouteRoute
   '/others/grades': typeof OthersGradesRouteRoute
@@ -134,7 +126,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/calendar': typeof CalendarRouteRoute
   '/login': typeof LoginRouteRoute
-  '/todo': typeof TodoRouteRoute
   '/todologged': typeof TodologgedRouteRoute
   '/weather': typeof WeatherRouteRoute
   '/others/grades': typeof OthersGradesRouteRoute
@@ -151,7 +142,6 @@ export interface FileRouteTypes {
     | '/'
     | '/calendar'
     | '/login'
-    | '/todo'
     | '/todologged'
     | '/weather'
     | '/others/grades'
@@ -166,7 +156,6 @@ export interface FileRouteTypes {
     | '/'
     | '/calendar'
     | '/login'
-    | '/todo'
     | '/todologged'
     | '/weather'
     | '/others/grades'
@@ -181,7 +170,6 @@ export interface FileRouteTypes {
     | '/'
     | '/calendar'
     | '/login'
-    | '/todo'
     | '/todologged'
     | '/weather'
     | '/others/grades'
@@ -197,7 +185,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CalendarRouteRoute: typeof CalendarRouteRoute
   LoginRouteRoute: typeof LoginRouteRoute
-  TodoRouteRoute: typeof TodoRouteRoute
   TodologgedRouteRoute: typeof TodologgedRouteRoute
   WeatherRouteRoute: typeof WeatherRouteRoute
   OthersGradesRouteRoute: typeof OthersGradesRouteRoute
@@ -244,13 +231,6 @@ declare module '@tanstack/react-router' {
       path: '/todologged'
       fullPath: '/todologged'
       preLoaderRoute: typeof TodologgedRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/todo': {
-      id: '/todo'
-      path: '/todo'
-      fullPath: '/todo'
-      preLoaderRoute: typeof TodoRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -341,7 +321,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CalendarRouteRoute: CalendarRouteRoute,
   LoginRouteRoute: LoginRouteRoute,
-  TodoRouteRoute: TodoRouteRoute,
   TodologgedRouteRoute: TodologgedRouteRoute,
   WeatherRouteRoute: WeatherRouteRoute,
   OthersGradesRouteRoute: OthersGradesRouteRoute,

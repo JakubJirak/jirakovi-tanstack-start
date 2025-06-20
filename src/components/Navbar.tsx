@@ -39,7 +39,7 @@ function Navbar({ isOpen, setIsOpen }: NavbarProps) {
         setIsOpen={setIsOpen}
       />
       <NavbarLink
-        to={linkOptions({ to: "/todo" }).to}
+        to={linkOptions({ to: "/todologged" }).to}
         text="Todo"
         icon={<FaListUl />}
         isOpen={isOpen}
