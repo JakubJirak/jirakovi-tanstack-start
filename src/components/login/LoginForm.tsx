@@ -44,14 +44,16 @@ const LoginForm = () => {
   const validate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const refData = await refetch();
+    if (!refData.data) {
+      setValid(false);
+      return;
+    }
     if (refData.data?.password === password) {
       console.log("prihlasen");
       navigate({ to: "/todologged" });
       setLogged(true);
       setValid(true);
       setUserId(String(refData.data.id));
-    } else {
-      setValid(false);
     }
   };
 
@@ -91,12 +93,17 @@ const LoginForm = () => {
         </button>
       </form>
 
-      {error ||
-        (!valid && (
+      {error ? (
+        <p className="text-center text-red-500 mt-5">
+          Nesprávné uživatelské jméno nebo heslo!
+        </p>
+      ) : (
+        !valid && (
           <p className="text-center text-red-500 mt-5">
             Nesprávné uživatelské jméno nebo heslo!
           </p>
-        ))}
+        )
+      )}
     </>
   );
 };
