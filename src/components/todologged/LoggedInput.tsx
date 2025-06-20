@@ -37,6 +37,7 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
   const mutationTodos = useMutation({
     mutationFn: addTodo,
     onError: (err) => console.log(err),
+    onSuccess: () => setFetchAgain(!fetchAgain),
   });
 
   const addUserMutation = () => {
@@ -53,9 +54,6 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
   const handleAdd = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addUserMutation();
-    setTimeout(() => {
-      setFetchAgain(!fetchAgain);
-    }, 200);
     setInpDate("");
     setInpValue("");
   };
@@ -124,7 +122,7 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
       </form>
       <button
         type="button"
-        className="bg-secondary-800 flex rounded-full ml-3 mr-1 hover:bg-secondary-900 cursor-pointer transition duration-200 z-10 fixed bottom-8 right-7
+        className="bg-secondary-800 flex rounded-full ml-3 mr-1 hover:bg-secondary-900 cursor-pointer transition duration-200 z-11 fixed bottom-8 right-7
                 md:hidden"
         onClick={() => {
           setMobileShow(!mobileShow);

@@ -100,4 +100,3 @@ const LoggedTodos = ({ fetchAgain }: LoggedTodosProps) => {
 };
 
 export default LoggedTodos;
-7;

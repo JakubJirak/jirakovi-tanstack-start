@@ -15,9 +15,14 @@ function RouteComponent() {
   return (
     <div>
       {logged && (
-        <div className="w-[min(95%,1200px)] mx-auto">
-          <LoggedInput setFetchAgain={setFetchAgain} fetchAgain={fetchAgain} />
-          <LoggedTodos fetchAgain={fetchAgain} />
+        <div className=" mx-auto flex flex-col items-center justify-center overflow-auto">
+          <div className="w-[min(95%,1100px)] max-h-[90vh]">
+            <LoggedInput
+              setFetchAgain={setFetchAgain}
+              fetchAgain={fetchAgain}
+            />
+            <LoggedTodos fetchAgain={fetchAgain} />
+          </div>
         </div>
       )}
 
