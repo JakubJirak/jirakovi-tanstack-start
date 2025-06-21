@@ -2,6 +2,7 @@ import Navbar from "./Navbar.tsx";
 
 import { LoginProvider } from "@/data/Context/LoginContext.tsx";
 import { TodoProvider } from "@/data/Context/TodoContext.tsx";
+import { WeatherProvider } from "@/data/Context/WeatherContext.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Outlet } from "@tanstack/react-router";
 import { useState } from "react";
@@ -48,7 +49,9 @@ function Layout() {
         <QueryClientProvider client={queryClient}>
           <TodoProvider>
             <LoginProvider>
-              <Outlet />
+              <WeatherProvider>
+                <Outlet />
+              </WeatherProvider>
             </LoginProvider>
           </TodoProvider>
         </QueryClientProvider>

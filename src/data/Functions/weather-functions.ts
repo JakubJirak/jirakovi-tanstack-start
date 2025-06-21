@@ -18,5 +18,5 @@ export function getImage(code: number, day: number, codeData: codeData) {
 }
 
 export function getText(day: number, codeData: codeData) {
-  day === 1 ? codeData.day : codeData.night;
+  return day === 1 ? codeData.day : codeData.night;
 }
