@@ -7,10 +7,10 @@ const WeatherStats = () => {
   const { weatherData } = useWeatherContext();
 
   const codeData = useMemo(
-    () =>
-      // @ts-ignore
-      codes.find((code) => code.code === weatherData?.current?.condition?.code),
-    [weatherData],
+      () =>
+          // @ts-ignore
+          codes.find((code) => code.code === weatherData?.current?.condition?.code),
+      [weatherData],
   );
 
   if (!weatherData || !codeData) return null;
@@ -21,10 +21,10 @@ const WeatherStats = () => {
   const temp = weatherData.current.temp_c || "stupen";
 
   return (
-    <div>
-      <p>{temp}</p>
-      <p>{icontext}</p>
-    </div>
+      <div>
+        <p>{temp}</p>
+        <p>{icontext}</p>
+      </div>
   );
 };
 
