@@ -1,21 +1,19 @@
 import { useWeatherContext } from "@/data/Context/WeatherContext.tsx";
 import { getImage } from "@/data/Functions/weather-functions.ts";
+import { codes } from "@/data/weather-codes.ts";
+import { useMemo } from "react";
 
-interface WeatherIconProps {
-  codeData: {
-    code: number;
-    day: string;
-    night: string;
-    icon: string;
-    nighticon: string;
-  };
-}
-
-const WeatherIcon = ({ codeData }: WeatherIconProps) => {
+const WeatherIcon = () => {
   const { weatherData } = useWeatherContext();
 
-  if (!weatherData || !codeData) return null;
+  const codeData = useMemo(
+    () =>
+      // @ts-ignore
+      codes.find((code) => code.code === weatherData?.current?.condition?.code),
+    [weatherData],
+  );
 
+  if (!weatherData || !codeData) return null;
   // @ts-ignore
   const imgFile = getImage(codeData.code, weatherData.current.is_day, codeData);
 
