@@ -55,7 +55,7 @@ export function RouteComponent() {
         klini
       </button>
       <div className="">
-        <WeatherIcon />
+        <WeatherIcon codeData={codeData} />
         <WeatherStats codeData={codeData} />
       </div>
       {isLoading && <p>Loading...</p>}

@@ -1,18 +1,15 @@
 import { useWeatherContext } from "@/data/Context/WeatherContext.tsx";
-import { getImage } from "@/data/Functions/weather-functions.ts";
-import { codes } from "@/data/weather-codes.ts";
-import { useMemo } from "react";
+import { type codeData, getImage } from "@/data/Functions/weather-functions.ts";
 
-const WeatherIcon = () => {
+interface WeatherIcon {
+  codeData: codeData | null;
+}
+
+const WeatherIcon = ({ codeData }: WeatherIcon) => {
   const { weatherData } = useWeatherContext();
 
-  const codeData = useMemo(
-    () =>
-      codes.find((code) => code.code === weatherData?.current?.condition?.code),
-    [weatherData],
-  );
+  if (!weatherData || !codeData) return <p>Chyba pri nacitani dat</p>;
 
-  if (!weatherData || !codeData) return null;
   const imgFile = getImage(
     codeData?.code,
     weatherData?.current?.is_day,
