@@ -16,6 +16,8 @@ const WeatherIcon = () => {
   if (!weatherData || !codeData) return null;
   // @ts-ignore
   const imgFile = getImage(codeData.code, weatherData.current.is_day, codeData);
+  // @ts-ignore
+  const temp = weatherData.current.temp_c;
 
   return (
     <div className="w-full">
@@ -25,6 +27,7 @@ const WeatherIcon = () => {
         data={`/weather-icons/${imgFile}.svg`}
         type="image/svg+xml"
       />
+      <p>{temp}</p>
     </div>
   );
 };
