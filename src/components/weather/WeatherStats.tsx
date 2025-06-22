@@ -22,8 +22,8 @@ const WeatherStats = () => {
 
   return (
     <div>
-      <p>nesnasim tohle</p>
-      <p>nesnasim tohle</p>
+      <p>{temp}</p>
+      <p>{icontext}</p>
     </div>
   );
 };
