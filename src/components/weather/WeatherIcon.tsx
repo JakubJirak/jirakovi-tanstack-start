@@ -22,7 +22,7 @@ const WeatherIcon = () => {
       <object
         height="250px"
         aria-label="objekt"
-        data={`../../../public/weather-icons/${imgFile}.svg`}
+        data={`/weather-icons/${imgFile}.svg`}
         type="image/svg+xml"
       />
     </div>
