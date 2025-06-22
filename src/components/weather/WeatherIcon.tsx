@@ -2,7 +2,7 @@ import { useWeatherContext } from "@/data/Context/WeatherContext.tsx";
 import { type codeData, getImage } from "@/data/Functions/weather-functions.ts";
 
 interface WeatherIcon {
-  codeData: codeData | null;
+  codeData: codeData | undefined;
 }
 
 const WeatherIcon = ({ codeData }: WeatherIcon) => {

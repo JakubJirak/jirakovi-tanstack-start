@@ -3,7 +3,7 @@ import { getText } from "@/data/Functions/weather-functions.ts";
 import type { codeData } from "@/data/Functions/weather-functions.ts";
 
 interface WeatherStats {
-  codeData: codeData | null;
+  codeData: codeData | undefined;
 }
 
 const WeatherStats = ({ codeData }: WeatherStats) => {
