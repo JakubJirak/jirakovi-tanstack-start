@@ -8,22 +8,23 @@ const WeatherStats = () => {
 
   const codeData = useMemo(
     () =>
-      // @ts-ignore
       codes.find((code) => code.code === weatherData?.current?.condition?.code),
     [weatherData],
   );
 
   if (!weatherData || !codeData) return null;
 
-  //@ts-ignore
-  const icontext = getText(weatherData.current.is_day, codeData) || "text";
-  //@ts-ignore
-  const temp = weatherData.current.temp_c || "stupen";
+  const icontext = getText(weatherData?.current?.is_day, codeData);
+  const temp = weatherData.current?.temp_c || "stupen";
+  const feelsLike = weatherData.current?.feelslike_c;
+  const humidity = weatherData.current?.humidity;
 
   return (
     <div>
-      <p>{temp}</p>
+      <p>{temp} °C</p>
+      <p>{feelsLike} °C</p>
       <p>{icontext}</p>
+      <p>{humidity} %</p>
     </div>
   );
 };

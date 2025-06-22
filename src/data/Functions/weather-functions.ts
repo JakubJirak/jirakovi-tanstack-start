@@ -1,11 +1,14 @@
 interface codeData {
+  code: number;
   day: string;
   night: string;
   icon: string;
   nighticon: string;
 }
 
-export function getImage(code: number, day: number, codeData: codeData) {
+export function getImage(code?: number, day?: number, codeData?: codeData) {
+  if (!code || !day || !codeData) return "null";
+
   if (code === 1000 || code === 1003) {
     if (day === 1) {
       return codeData.icon;
@@ -17,6 +20,7 @@ export function getImage(code: number, day: number, codeData: codeData) {
   return codeData.icon;
 }
 
-export function getText(day: number, codeData: codeData) {
+export function getText(day?: number, codeData?: codeData) {
+  if (!day || !codeData) return "null";
   return day === 1 ? codeData.day : codeData.night;
 }

@@ -8,14 +8,16 @@ const WeatherIcon = () => {
 
   const codeData = useMemo(
     () =>
-      // @ts-ignore
       codes.find((code) => code.code === weatherData?.current?.condition?.code),
     [weatherData],
   );
 
   if (!weatherData || !codeData) return null;
-  // @ts-ignore
-  const imgFile = getImage(codeData.code, weatherData.current.is_day, codeData);
+  const imgFile = getImage(
+    codeData?.code,
+    weatherData?.current?.is_day,
+    codeData,
+  );
 
   return (
     <div className="w-full">
