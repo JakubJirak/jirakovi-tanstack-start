@@ -1,10 +1,11 @@
 import WeatherIcon from "@/components/weather/WeatherIcon.tsx";
 import WeatherStats from "@/components/weather/WeatherStats.tsx";
 import { useWeatherContext } from "@/data/Context/WeatherContext.tsx";
+import { codes } from "@/data/weather-codes.ts";
 import { env } from "@/env.ts";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 export const Route = createFileRoute("/weather")({
   component: RouteComponent,
@@ -42,14 +43,21 @@ export function RouteComponent() {
     }
   });
 
+  const codeData = useMemo(
+    () =>
+      // @ts-ignore
+      codes.find((code) => code.code === weatherData?.current?.condition?.code),
+    [weatherData],
+  );
+
   return (
     <div>
       <button onClick={getData} type="button">
         klini
       </button>
       <div className="">
-        <WeatherIcon />
-        <WeatherStats />
+        <WeatherIcon codeData={codeData} />
+        <WeatherStats codeData={codeData} />
       </div>
       {isLoading && <p>Loading...</p>}
       {error && <p>error</p>}

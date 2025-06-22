@@ -1,17 +1,18 @@
 import { useWeatherContext } from "@/data/Context/WeatherContext.tsx";
 import { getText } from "@/data/Functions/weather-functions.ts";
-import { codes } from "@/data/weather-codes.ts";
-import { useMemo } from "react";
 
-const WeatherStats = () => {
+interface WeatherStatsProps {
+  codeData: {
+    code: number;
+    day: string;
+    night: string;
+    icon: string;
+    nighticon: string;
+  };
+}
+
+const WeatherStats = ({ codeData }: WeatherStatsProps) => {
   const { weatherData } = useWeatherContext();
-
-  const codeData = useMemo(
-    () =>
-      // @ts-ignore
-      codes.find((code) => code.code === weatherData?.current?.condition?.code),
-    [weatherData],
-  );
 
   if (!weatherData || !codeData) return null;
 
