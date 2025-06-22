@@ -1,4 +1,4 @@
-interface codeData {
+export interface codeData {
   code: number;
   day: string;
   night: string;
