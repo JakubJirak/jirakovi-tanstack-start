@@ -31,10 +31,14 @@ export const useWeatherContext = () => {
 };
 
 export const WeatherProvider = ({ children }: PropsWithChildren) => {
-  const [weatherData, setWeatherData] = useState<WeatherData | null>(() => {
-    const data = window.localStorage.getItem("weatherData");
-    return data ? JSON.parse(data) : null;
-  });
+  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+
+  useEffect(() => {
+    setWeatherData(() => {
+      const data = window.localStorage.getItem("weatherData");
+      return data ? JSON.parse(data) : null;
+    });
+  }, []);
 
   useEffect(() => {
     window.localStorage.setItem("weatherData", JSON.stringify(weatherData));
