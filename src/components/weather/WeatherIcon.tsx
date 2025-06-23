@@ -17,13 +17,8 @@ const WeatherIcon = ({ codeData }: WeatherIcon) => {
   );
 
   return (
-    <div className="w-full">
-      <object
-        height="250px"
-        aria-label="objekt"
-        data={`/weather-icons/${imgFile}.svg`}
-        type="image/svg+xml"
-      />
+    <div className="w-50 m-[-20px]">
+      <img width="100%" src={`/weather-icons/${imgFile}.svg`} alt={imgFile} />
     </div>
   );
 };

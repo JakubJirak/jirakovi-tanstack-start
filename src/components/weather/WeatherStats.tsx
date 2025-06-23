@@ -6,6 +6,17 @@ interface WeatherStats {
   codeData: codeData | undefined;
 }
 
+/*
+AKTUALNE - icon, texticon, temp_c, feels like, wind_kph, humidity, location city, time of last update
+
+DNESEK - pocasi pro - 6,9,12,15,18,21 - ikona, text, teplota, chance of rain
+
+FORECAST
+
+DEN - min. temp, max. temp, daily chance of rain, date
+HODINA - icon (isday), texticon, temp_c, wind_kph, chance of rain
+*/
+
 const WeatherStats = ({ codeData }: WeatherStats) => {
   const { weatherData } = useWeatherContext();
 
