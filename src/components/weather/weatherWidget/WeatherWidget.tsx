@@ -5,7 +5,6 @@ import {
   getImage,
   getText,
 } from "@/data/Functions/weather-functions.ts";
-import { useEffect, useState } from "react";
 
 interface WeatherWidget {
   codeData: codeData | undefined;
@@ -24,7 +23,6 @@ HODINA - icon (isday), texticon, temp_c, wind_kph, chance of rain
 
 const WeatherWidget = ({ codeData }: WeatherWidget) => {
   const { weatherData } = useWeatherContext();
-  const [icontext, setIcontext] = useState<string>("");
 
   if (!weatherData || !codeData) return <p>Chyba pri nacitani dat</p>;
 
@@ -34,13 +32,7 @@ const WeatherWidget = ({ codeData }: WeatherWidget) => {
     codeData,
   );
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  useEffect(() => {
-    setTimeout(() => {
-      setIcontext(getText(weatherData?.current?.is_day, codeData));
-    }, 1000);
-  }, []);
-
+  const icontext = getText(weatherData?.current?.is_day, codeData);
   const city = weatherData?.location?.name;
   const updated = weatherData?.location?.localtime;
   const temp = weatherData.current?.temp_c;
