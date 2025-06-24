@@ -34,13 +34,15 @@ const WeatherWidget = ({ codeData }: WeatherWidget) => {
     codeData,
   );
 
+  icontext = "";
+
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    console.log("zmena");
-    icontext = getText(weatherData?.current?.is_day, codeData);
-  }, [weatherData]);
+    setTimeout(() => {
+      icontext = getText(weatherData?.current?.is_day, codeData);
+    }, 1000);
+  }, []);
 
-  icontext = getText(weatherData?.current?.is_day, codeData);
   const city = weatherData?.location?.name;
   const updated = weatherData?.location?.localtime;
   const temp = weatherData.current?.temp_c;
