@@ -12,7 +12,11 @@ interface WeatherData {
     condition: {
       code: number;
     };
-  } | null;
+  }
+  location: {
+    name: string;
+    localtime: string;
+  }| null
 }
 
 interface WeatherContextType {
