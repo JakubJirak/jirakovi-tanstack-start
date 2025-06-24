@@ -5,6 +5,7 @@ import {
   getImage,
   getText,
 } from "@/data/Functions/weather-functions.ts";
+import { useEffect } from "react";
 
 interface WeatherWidget {
   codeData: codeData | undefined;
@@ -31,6 +32,11 @@ const WeatherWidget = ({ codeData }: WeatherWidget) => {
     weatherData?.current?.is_day,
     codeData,
   );
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    console.log("zmena");
+  }, [weatherData]);
 
   const icontext = getText(weatherData?.current?.is_day, codeData);
   const city = weatherData?.location?.name;
