@@ -24,6 +24,7 @@ HODINA - icon (isday), texticon, temp_c, wind_kph, chance of rain
 
 const WeatherWidget = ({ codeData }: WeatherWidget) => {
   const { weatherData } = useWeatherContext();
+  let icontext: string;
 
   if (!weatherData || !codeData) return <p>Chyba pri nacitani dat</p>;
 
@@ -36,9 +37,10 @@ const WeatherWidget = ({ codeData }: WeatherWidget) => {
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     console.log("zmena");
+    icontext = getText(weatherData?.current?.is_day, codeData);
   }, [weatherData]);
 
-  const icontext = getText(weatherData?.current?.is_day, codeData);
+  icontext = getText(weatherData?.current?.is_day, codeData);
   const city = weatherData?.location?.name;
   const updated = weatherData?.location?.localtime;
   const temp = weatherData.current?.temp_c;
