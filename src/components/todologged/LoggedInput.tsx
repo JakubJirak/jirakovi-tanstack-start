@@ -104,7 +104,7 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
 
         <button
           onClick={() => setMobileShow(!mobileShow)}
-          className="bg-secondary-800 flex rounded-full items-center justify-center hover:bg-secondary-900 cursor-pointer transition duration-200 h-10 mb-1.5
+          className="bg-secondary-800  flex rounded-full items-center justify-center hover:bg-secondary-900 cursor-pointer transition duration-200 h-10 mb-1.5
                     md:ml-3 md:mr-1 md:mb-0"
           type="submit"
         >

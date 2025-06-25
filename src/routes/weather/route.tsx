@@ -1,11 +1,11 @@
+import TodayForecast from "@/components/weather/todayForecast/TodayForecast.tsx";
+import WeatherWidget from "@/components/weather/weatherWidget/WeatherWidget.tsx";
 import { useWeatherContext } from "@/data/Context/WeatherContext.tsx";
 import { codes } from "@/data/weather-codes.ts";
 import { env } from "@/env.ts";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo } from "react";
-import WeatherWidget from "@/components/weather/weatherWidget/WeatherWidget.tsx";
-import TodayForecast from "@/components/weather/todayForecast/TodayForecast.tsx";
 
 export const Route = createFileRoute("/weather")({
   component: RouteComponent,
@@ -51,12 +51,15 @@ export function RouteComponent() {
 
   return (
     <div>
-      <button onClick={getData} type="button">
-        klini
+      <button onClick={getData} className="absolute" type="button">
+        res
       </button>
-      <div className="">
-        <WeatherWidget codeData={codeData}/>
-        <TodayForecast codeData={codeData}/>
+      <div className="grid grid-rows-[1fr_1fr] h-[89vh] gap-3">
+        <div className="grid grid-cols-[3fr_7fr] overflow-hidden">
+          <WeatherWidget codeData={codeData} />
+          <TodayForecast codeData={codeData} />
+        </div>
+        <div className="bg-primary-900">a</div>
       </div>
 
       {isLoading && <p>Loading...</p>}

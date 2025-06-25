@@ -5,6 +5,9 @@ import {
   getImage,
   getText,
 } from "@/data/Functions/weather-functions.ts";
+import { FaWind } from "react-icons/fa";
+import { FaTemperatureHalf } from "react-icons/fa6";
+import { WiHumidity } from "react-icons/wi";
 
 interface WeatherWidget {
   codeData: codeData | undefined;
@@ -41,24 +44,37 @@ const WeatherWidget = ({ codeData }: WeatherWidget) => {
   const wind = `${String(weatherData.current?.wind_kph)} km/h`;
 
   return (
-    <div className="flex gap-2">
-      <div className="">
+    <div className="bg-primary-800/20 grid grid-rows-[40px_4fr_3fr] h-full overflow-hidden">
+      <div className="flex justify-around items-center text-gray-400">
         <p>{city}</p>
-        <div className="w-50">
-          <img
-            width="100%"
-            src={`/weather-icons/${imgFile}.svg`}
-            alt={imgFile}
-          />
-        </div>
-        <p>{icontext}</p>
-      </div>
-      <div className="">
         <p>{updated}</p>
-        <p>{temp} °C</p>
-        <WeatherWidgetRow icon="i" title="Pocitova" value={feelsLike} />
-        <WeatherWidgetRow icon="i" title="Vlhkost" value={humidity} />
-        <WeatherWidgetRow icon="i" title="Vitr" value={wind} />
+      </div>
+      <div className="grid grid-cols-[3fr_4fr] justify-items-center items-center">
+        <div className="flex flex-col items-center justify-center">
+          <div className="w-45">
+            <img
+              className="my-[-20px]"
+              width="100%"
+              src={`/weather-icons/${imgFile}.svg`}
+              alt={imgFile}
+            />
+          </div>
+          <p className="text-center pb-2 text-xl font-semibold">{icontext}</p>
+        </div>
+        <p className="text-[3.5vw] font-bold">{temp} °C</p>
+      </div>
+      <div className="flex flex-col pr-15 pl-4 py-4 gap-4 justify-between">
+        <WeatherWidgetRow
+          icon={<FaTemperatureHalf />}
+          title="Pocitova"
+          value={feelsLike}
+        />
+        <WeatherWidgetRow
+          icon={<WiHumidity />}
+          title="Vlhkost"
+          value={humidity}
+        />
+        <WeatherWidgetRow icon={<FaWind />} title="Vitr" value={wind} />
       </div>
     </div>
   );
