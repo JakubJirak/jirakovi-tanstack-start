@@ -44,14 +44,14 @@ const WeatherWidget = ({ codeData }: WeatherWidget) => {
   const wind = `${String(weatherData.current?.wind_kph)} km/h`;
 
   return (
-    <div className="bg-primary-800/20 grid grid-rows-[40px_4fr_3fr] h-full overflow-hidden">
+    <div className="bg-primary-800/20 grid grid-rows-[30px_1fr_1fr] lg:grid-rows-[40px_4fr_3fr] h-full overflow-hidden">
       <div className="flex justify-around items-center text-gray-400">
         <p>{city}</p>
         <p>{updated}</p>
       </div>
-      <div className="grid grid-cols-[3fr_4fr] justify-items-center items-center">
+      <div className="grid grid-cols-2 lg:grid-cols-[3fr_4fr] justify-items-center items-center">
         <div className="flex flex-col items-center justify-center">
-          <div className="w-45">
+          <div className="mr-[-20px] lg:mr-0 w-40 lg:w-45">
             <img
               className="my-[-20px]"
               width="100%"
@@ -59,11 +59,13 @@ const WeatherWidget = ({ codeData }: WeatherWidget) => {
               alt={imgFile}
             />
           </div>
-          <p className="text-center pb-2 text-xl font-semibold">{icontext}</p>
+          <p className="mr-[-20px] lg:mr-0 text-center pb-2 text-xl font-semibold">
+            {icontext}
+          </p>
         </div>
-        <p className="text-[3.5vw] font-bold">{temp} °C</p>
+        <p className="text-4xl lg:text-[3.5vw] font-bold">{temp} °C</p>
       </div>
-      <div className="flex flex-col pr-15 pl-4 py-4 gap-4 justify-between">
+      <div className="flex flex-col px-4 lg:pr-15 pl-4 py-4 gap-4 justify-between">
         <WeatherWidgetRow
           icon={<FaTemperatureHalf />}
           title="Pocitova"

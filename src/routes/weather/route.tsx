@@ -54,8 +54,8 @@ export function RouteComponent() {
       <button onClick={getData} className="absolute" type="button">
         res
       </button>
-      <div className="grid grid-rows-[1fr_1fr] h-[89vh] gap-3">
-        <div className="grid grid-cols-[3fr_7fr] overflow-hidden">
+      <div className="grid lg:grid-rows-[1fr_1fr] lg:h-[89vh] gap-3">
+        <div className="grid grid-cols-1 grid-rows-2 lg:grid-rows-1 lg:grid-cols-[3fr_7fr] overflow-hidden">
           <WeatherWidget codeData={codeData} />
           <TodayForecast codeData={codeData} />
         </div>
