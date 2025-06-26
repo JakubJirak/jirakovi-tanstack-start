@@ -5,6 +5,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { RouteComponent as Calendar } from "../routes/calendar/route.tsx";
 import { RouteComponent as Weather } from "../routes/weather/route.tsx";
+import "../styles.css";
 
 export const Route = createFileRoute("/")({
   component: App,

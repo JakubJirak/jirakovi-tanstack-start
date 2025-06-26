@@ -37,29 +37,31 @@ export function RouteComponent() {
     console.log(data.data);
   };
 
-  useEffect(() => {
-    if (!weatherData) {
-      getData();
-    }
-  });
-
   const codeData = useMemo(
     () =>
       codes.find((code) => code.code === weatherData?.current?.condition?.code),
     [weatherData],
   );
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    const local = window.localStorage.getItem("weatherData");
+    if (!local) getData();
+  }, []);
+
   return (
-    <div>
+    <div className="p-3 lg:p-0">
       <button onClick={getData} className="absolute" type="button">
         res
       </button>
-      <div className="grid lg:grid-rows-[1fr_1fr] lg:h-[89vh] gap-3">
-        <div className="grid grid-cols-1 grid-rows-2 lg:grid-rows-1 lg:grid-cols-[3fr_7fr] overflow-hidden">
+      <div className="grid lg:grid-rows-[1fr_1fr] lg:h-[91vh] gap-3 overflow-hidden">
+        <div className="grid grid-cols-1 gap-3 grid-rows-2 lg:grid-rows-1 lg:grid-cols-[3fr_7fr] overflow-hidden">
           <WeatherWidget codeData={codeData} />
           <TodayForecast codeData={codeData} />
         </div>
-        <div className="bg-primary-900">a</div>
+        <div className="bg-primary-800/20 rounded-xl overflow-hidden">
+          niga kde ses
+        </div>
       </div>
 
       {isLoading && <p>Loading...</p>}

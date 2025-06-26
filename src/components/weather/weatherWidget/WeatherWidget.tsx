@@ -27,7 +27,7 @@ HODINA - icon (isday), texticon, temp_c, wind_kph, chance of rain
 const WeatherWidget = ({ codeData }: WeatherWidget) => {
   const { weatherData } = useWeatherContext();
 
-  if (!weatherData || !codeData) return <p>Chyba pri nacitani dat</p>;
+  if (!weatherData || !codeData) return "";
 
   const imgFile = getImage(
     codeData?.code,
@@ -44,14 +44,14 @@ const WeatherWidget = ({ codeData }: WeatherWidget) => {
   const wind = `${String(weatherData.current?.wind_kph)} km/h`;
 
   return (
-    <div className="bg-primary-800/20 grid grid-rows-[30px_1fr_1fr] lg:grid-rows-[40px_4fr_3fr] h-full overflow-hidden">
+    <div className="bg-primary-800/20 grid grid-rows-[30px_1fr_1fr] rounded-xl lg:grid-rows-[40px_4fr_3fr] h-full overflow-hidden">
       <div className="flex justify-around items-center text-gray-400">
         <p>{city}</p>
         <p>{updated}</p>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-[3fr_4fr] justify-items-center items-center">
         <div className="flex flex-col items-center justify-center">
-          <div className="mr-[-20px] lg:mr-0 w-40 lg:w-45">
+          <div className="mr-[-20px] lg:mr-0 w-40 lg:w-45 2xl:w-50">
             <img
               className="my-[-20px]"
               width="100%"
@@ -63,12 +63,14 @@ const WeatherWidget = ({ codeData }: WeatherWidget) => {
             {icontext}
           </p>
         </div>
-        <p className="text-4xl lg:text-[3.5vw] font-bold">{temp} °C</p>
+        <p className="text-4xl sm:text-5xl md:text-6xl ml-[-30px] lg:text-[3.5vw] font-bold">
+          {temp} °C
+        </p>
       </div>
-      <div className="flex flex-col px-4 lg:pr-15 pl-4 py-4 gap-4 justify-between">
+      <div className="flex flex-col px-4 pl-4 py-4 gap-4 justify-between">
         <WeatherWidgetRow
           icon={<FaTemperatureHalf />}
-          title="Pocitova"
+          title="Pocitově"
           value={feelsLike}
         />
         <WeatherWidgetRow
@@ -76,7 +78,7 @@ const WeatherWidget = ({ codeData }: WeatherWidget) => {
           title="Vlhkost"
           value={humidity}
         />
-        <WeatherWidgetRow icon={<FaWind />} title="Vitr" value={wind} />
+        <WeatherWidgetRow icon={<FaWind />} title="Vítr" value={wind} />
       </div>
     </div>
   );

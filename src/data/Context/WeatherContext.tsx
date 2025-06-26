@@ -1,23 +1,7 @@
+import type { WeatherData } from "@/data/weather-data-type.ts";
 import type React from "react";
 import type { PropsWithChildren } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
-
-interface WeatherData {
-  current: {
-    feelslike_c: number;
-    humidity: number;
-    is_day: number;
-    temp_c: number;
-    wind_kph: number;
-    condition: {
-      code: number;
-    };
-  }
-  location: {
-    name: string;
-    localtime: string;
-  }| null
-}
 
 interface WeatherContextType {
   weatherData: WeatherData | null;
@@ -38,14 +22,24 @@ export const WeatherProvider = ({ children }: PropsWithChildren) => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
 
   useEffect(() => {
-    setWeatherData(() => {
-      const data = window.localStorage.getItem("weatherData");
-      return data ? JSON.parse(data) : null;
-    });
+    if (typeof window !== "undefined") {
+      try {
+        const data = window.localStorage.getItem("weatherData");
+        setWeatherData(data ? JSON.parse(data) : null);
+      } catch (err) {
+        setWeatherData(null);
+      }
+    }
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem("weatherData", JSON.stringify(weatherData));
+    if (typeof window !== "undefined" && weatherData !== null) {
+      try {
+        window.localStorage.setItem("weatherData", JSON.stringify(weatherData));
+      } catch (err) {
+        console.log("Weather Data Error", err);
+      }
+    }
   }, [weatherData]);
 
   return (
