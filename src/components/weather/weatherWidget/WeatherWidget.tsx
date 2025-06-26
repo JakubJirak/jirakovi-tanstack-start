@@ -51,7 +51,7 @@ const WeatherWidget = ({ codeData }: WeatherWidget) => {
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-[3fr_4fr] justify-items-center items-center">
         <div className="flex flex-col items-center justify-center">
-          <div className="mr-[-20px] lg:mr-0 w-40 lg:w-45 2xl:w-50">
+          <div className="mr-[-20px] lg:mr-0 w-40 lg:w-43 2xl:w-45">
             <img
               className="my-[-20px]"
               width="100%"
