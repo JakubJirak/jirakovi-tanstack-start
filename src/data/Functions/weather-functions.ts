@@ -7,17 +7,25 @@ export interface codeData {
 }
 
 export function getImage(code?: number, day?: number, codeData?: codeData) {
-  if (code === 1000 || code === 1003) {
-    if (day === 1) {
-      return codeData?.icon;
-      // biome-ignore lint/style/noUselessElse: <explanation>
-    } else {
-      return codeData?.nighticon;
+  try {
+    if (code === 1000 || code === 1003) {
+      if (day === 1) {
+        return codeData?.icon;
+        // biome-ignore lint/style/noUselessElse: <explanation>
+      } else {
+        return codeData?.nighticon;
+      }
     }
+    return codeData?.icon;
+  } catch (e) {
+    return "null";
   }
-  return codeData?.icon;
 }
 
 export function getText(day?: number, codeData?: codeData) {
-  return day === 1 ? codeData?.day : codeData?.night;
+  try {
+    return day === 1 ? codeData?.day : codeData?.night;
+  } catch (e) {
+    return "null";
+  }
 }
