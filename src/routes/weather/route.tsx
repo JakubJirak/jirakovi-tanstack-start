@@ -60,7 +60,7 @@ export function RouteComponent() {
           <TodayForecast codeData={codeData} />
         </div>
         <div className="bg-primary-800/20 rounded-xl overflow-hidden">
-          niga kde ses
+          predpoved pro dalsi dva dny
         </div>
       </div>
 
