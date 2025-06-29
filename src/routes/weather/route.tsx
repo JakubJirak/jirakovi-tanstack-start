@@ -57,7 +57,7 @@ export function RouteComponent() {
       <div className="grid lg:grid-rows-[1fr_1fr] lg:h-[91vh] gap-3 overflow-hidden">
         <div className="grid grid-cols-1 gap-3 grid-rows-2 lg:grid-rows-1 lg:grid-cols-[3fr_7fr] overflow-hidden">
           <WeatherWidget codeData={codeData} />
-          <TodayForecast codeData={codeData} />
+          <TodayForecast />
         </div>
         <div className="bg-primary-800/20 rounded-xl overflow-hidden">
           predpoved pro dalsi dva dny
