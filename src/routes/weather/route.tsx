@@ -6,6 +6,7 @@ import { env } from "@/env.ts";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo } from "react";
+import { RiResetLeftFill } from "react-icons/ri";
 
 export const Route = createFileRoute("/weather")({
   component: RouteComponent,
@@ -51,8 +52,12 @@ export function RouteComponent() {
 
   return (
     <div className="p-3 lg:p-0">
-      <button onClick={getData} className="absolute" type="button">
-        res
+      <button
+        onClick={getData}
+        className="absolute m-1 text-gray-300 bg-primary-800 p-1 rounded-2xl"
+        type="button"
+      >
+        <RiResetLeftFill size={20} />
       </button>
       <div className="grid lg:grid-rows-[1fr_1fr] lg:h-[91vh] gap-3 overflow-hidden">
         <div className="grid grid-cols-1 gap-3 grid-rows-2 lg:grid-rows-1 lg:grid-cols-[3fr_7fr] overflow-hidden">
