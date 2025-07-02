@@ -1,6 +1,6 @@
-import { useLoginContext } from "@/data/Context/LoginContext.tsx";
 import { db } from "@/db";
 import { todos } from "@/db/schema.ts";
+import { authClient } from "@/lib/auth-client.ts";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
@@ -14,7 +14,7 @@ interface LoggedTodosProps {
 }
 
 const fetchData = createServerFn({ method: "GET" })
-  .validator((data: { userId: number }) => data)
+  .validator((data: { userId: string }) => data)
   .handler(async ({ data }) => {
     const todosUser = await db
       .select()
@@ -42,11 +42,14 @@ const updateData = createServerFn({ method: "POST" })
   });
 
 const LoggedTodos = ({ fetchAgain }: LoggedTodosProps) => {
-  const { userId } = useLoginContext();
+  const { data: session } = authClient.useSession();
+
+  if (!session) return null;
+  const userId = session.user.id;
 
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["todos", userId],
-    queryFn: () => fetchData({ data: { userId: Number(userId) } }),
+    queryFn: () => fetchData({ data: { userId: userId } }),
     enabled: true,
   });
 

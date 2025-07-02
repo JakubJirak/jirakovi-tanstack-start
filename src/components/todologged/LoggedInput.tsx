@@ -1,4 +1,3 @@
-import { useLoginContext } from "@/data/Context/LoginContext.tsx";
 import { db } from "@/db";
 import { todos } from "@/db/schema.ts";
 import { useMutation } from "@tanstack/react-query";
@@ -6,6 +5,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import type React from "react";
 import "./reactDate.css";
+import { authClient } from "@/lib/auth-client.ts";
 
 interface LoggedInput {
   fetchAgain: boolean;
@@ -14,7 +14,7 @@ interface LoggedInput {
 
 const addTodo = createServerFn({ method: "POST" })
   .validator(
-    (data: { userId: number; text: string; date: string; isDone: boolean }) =>
+    (data: { userId: string; text: string; date: string; isDone: boolean }) =>
       data,
   )
   .handler(async ({ data }) => {
@@ -33,7 +33,9 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
   const [inpValue, setInpValue] = useState("");
   const [inpDate, setInpDate] = useState("");
   const [mobileShow, setMobileShow] = useState(false);
-  const { userId } = useLoginContext();
+  const { data: session } = authClient.useSession();
+
+  if (!session) return null;
 
   const mutationTodos = useMutation({
     mutationFn: addTodo,
@@ -45,7 +47,7 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
     mutationTodos.mutate({
       data: {
         text: inpValue,
-        userId: Number(userId),
+        userId: session.user.id,
         date: inpDate,
         isDone: false,
       },

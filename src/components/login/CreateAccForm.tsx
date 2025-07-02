@@ -1,31 +1,30 @@
-import { useLoginContext } from "@/data/Context/LoginContext.tsx";
 import { authClient } from "@/lib/auth-client.ts";
 import { useState } from "react";
 import type React from "react";
 
-const LoginForm = () => {
-  const { password, setPassword, setLogged } = useLoginContext();
+const SignInForm = () => {
   const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [name, setName] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
-  const validate2 = async (e: React.FormEvent<HTMLFormElement>) => {
+  const validate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLogged(true);
 
-    await authClient.signIn.email(
+    const { data } = await authClient.signUp.email(
       {
-        email,
-        password,
-        callbackURL: "/todologged",
-        rememberMe: true,
+        email, // user email address
+        password, // user password -> min 8 characters by default
+        name, // user display name
+        callbackURL: "/todologged", // A URL to redirect to after the user verifies their email (optional)
       },
       {
         onRequest: () => {
           setLoading(true);
         },
         onSuccess: () => {
-          console.log("logged");
+          console.log(data);
           setLoading(false);
         },
         onError: (ctx) => {
@@ -39,13 +38,24 @@ const LoginForm = () => {
   return (
     <>
       <form
-        onSubmit={validate2}
+        onSubmit={validate}
         className="bg-primary-900 w-[90%] flex flex-col rounded-xl p-4 text-xl max-w-[500px] mx-auto mt-4"
       >
         <h1 className="text-center text-3xl font-semibold mb-5">
-          Přihlásit se
+          Vytvořit účet
         </h1>
-        <label className="mb-1 text-gray-300 text-lg" htmlFor="username">
+        <label className="mb-1 text-gray-300 text-lg" htmlFor="name">
+          Uživatelské jméno
+        </label>
+        <input
+          required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          type="text"
+          id="name"
+          className="bg-primary-800 focus:outline-none px-2 py-1 rounded-lg mb-4"
+        />
+        <label className="mb-1 text-gray-300 text-lg" htmlFor="email">
           Email
         </label>
         <input
@@ -53,7 +63,7 @@ const LoginForm = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           type="email"
-          id="username"
+          id="email"
           className="bg-primary-800 focus:outline-none px-2 py-1 rounded-lg mb-4"
         />
         <label className="mb-1text-gray-300 text-lg" htmlFor="password">
@@ -62,6 +72,7 @@ const LoginForm = () => {
         <input
           required
           value={password}
+          min={8}
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           id="password"
@@ -71,7 +82,7 @@ const LoginForm = () => {
           type="submit"
           className="bg-secondary-700 mt-2 py-1 rounded-full hover:bg-secondary-800 cursor-pointer transition duration-200"
         >
-          {loading ? "Načítaní" : "Přihlásit se"}
+          {loading ? "Načítaní" : "Vytvořit účet"}
         </button>
         <p
           className={`${error !== "" && "mt-5"} text-red-500 text-center text-lg`}
@@ -83,4 +94,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignInForm;

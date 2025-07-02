@@ -1,28 +1,33 @@
 import LoggedInput from "@/components/todologged/LoggedInput.tsx";
 import LoggedTodos from "@/components/todologged/LoggedTodos.tsx";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { useLoginContext } from "../../data/Context/LoginContext.tsx";
+import { authClient } from "@/lib/auth-client.ts";
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 
 export const Route = createFileRoute("/todologged")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const { logged } = useLoginContext();
   const [fetchAgain, setFetchAgain] = useState(false);
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: nechapu co se ti nelibi bro
-  useEffect(() => {
-    if (!logged) {
-      navigate({ to: "/login" });
-    }
-  }, []);
+  const {
+    data: session,
+    //isPending - loading state
+    error, //error object
+    refetch, //refetch the session
+  } = authClient.useSession();
 
   return (
     <div>
-      {logged && (
+      <p>{session?.user?.name}</p>
+      <p>{session?.user?.email}</p>
+      <p>{error?.name}</p>
+      <button type="button" onClick={refetch}>
+        refetch
+      </button>
+      {session && (
         <div className=" mx-auto flex flex-col items-center justify-center overflow-auto">
           <div className="w-[min(95%,1100px)] max-h-[90vh]">
             <LoggedInput
