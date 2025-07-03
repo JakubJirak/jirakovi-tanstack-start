@@ -12,7 +12,7 @@ const SignInForm = () => {
   const validate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { data } = await authClient.signUp.email(
+    await authClient.signUp.email(
       {
         email, // user email address
         password, // user password -> min 8 characters by default
@@ -24,7 +24,7 @@ const SignInForm = () => {
           setLoading(true);
         },
         onSuccess: () => {
-          console.log(data);
+          alert("Ucet vytvoren!");
           setLoading(false);
         },
         onError: (ctx) => {
