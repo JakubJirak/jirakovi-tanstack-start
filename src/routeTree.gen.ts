@@ -17,7 +17,6 @@ import { Route as LoginRouteRouteImport } from './routes/login/route'
 import { Route as CalendarRouteRouteImport } from './routes/calendar/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OthersIndexRouteImport } from './routes/others/index'
-import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
 import { Route as OthersSpalickyRouteRouteImport } from './routes/others/spalicky/route'
 import { Route as OthersPokemonsRouteRouteImport } from './routes/others/pokemons/route'
 import { Route as OthersGradesRouteRouteImport } from './routes/others/grades/route'
@@ -56,11 +55,6 @@ const OthersIndexRoute = OthersIndexRouteImport.update({
   path: '/others/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
-  id: '/demo/tanstack-query',
-  path: '/demo/tanstack-query',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const OthersSpalickyRouteRoute = OthersSpalickyRouteRouteImport.update({
   id: '/others/spalicky',
   path: '/others/spalicky',
@@ -96,7 +90,6 @@ export interface FileRoutesByFullPath {
   '/others/grades': typeof OthersGradesRouteRoute
   '/others/pokemons': typeof OthersPokemonsRouteRoute
   '/others/spalicky': typeof OthersSpalickyRouteRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/others': typeof OthersIndexRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
 }
@@ -109,7 +102,6 @@ export interface FileRoutesByTo {
   '/others/grades': typeof OthersGradesRouteRoute
   '/others/pokemons': typeof OthersPokemonsRouteRoute
   '/others/spalicky': typeof OthersSpalickyRouteRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/others': typeof OthersIndexRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
 }
@@ -123,7 +115,6 @@ export interface FileRoutesById {
   '/others/grades': typeof OthersGradesRouteRoute
   '/others/pokemons': typeof OthersPokemonsRouteRoute
   '/others/spalicky': typeof OthersSpalickyRouteRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/others/': typeof OthersIndexRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
 }
@@ -138,7 +129,6 @@ export interface FileRouteTypes {
     | '/others/grades'
     | '/others/pokemons'
     | '/others/spalicky'
-    | '/demo/tanstack-query'
     | '/others'
     | '/demo/start/server-funcs'
   fileRoutesByTo: FileRoutesByTo
@@ -151,7 +141,6 @@ export interface FileRouteTypes {
     | '/others/grades'
     | '/others/pokemons'
     | '/others/spalicky'
-    | '/demo/tanstack-query'
     | '/others'
     | '/demo/start/server-funcs'
   id:
@@ -164,7 +153,6 @@ export interface FileRouteTypes {
     | '/others/grades'
     | '/others/pokemons'
     | '/others/spalicky'
-    | '/demo/tanstack-query'
     | '/others/'
     | '/demo/start/server-funcs'
   fileRoutesById: FileRoutesById
@@ -178,7 +166,6 @@ export interface RootRouteChildren {
   OthersGradesRouteRoute: typeof OthersGradesRouteRoute
   OthersPokemonsRouteRoute: typeof OthersPokemonsRouteRoute
   OthersSpalickyRouteRoute: typeof OthersSpalickyRouteRoute
-  DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
   OthersIndexRoute: typeof OthersIndexRoute
   DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
 }
@@ -248,13 +235,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OthersIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/tanstack-query': {
-      id: '/demo/tanstack-query'
-      path: '/demo/tanstack-query'
-      fullPath: '/demo/tanstack-query'
-      preLoaderRoute: typeof DemoTanstackQueryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/others/spalicky': {
       id: '/others/spalicky'
       path: '/others/spalicky'
@@ -306,7 +286,6 @@ const rootRouteChildren: RootRouteChildren = {
   OthersGradesRouteRoute: OthersGradesRouteRoute,
   OthersPokemonsRouteRoute: OthersPokemonsRouteRoute,
   OthersSpalickyRouteRoute: OthersSpalickyRouteRoute,
-  DemoTanstackQueryRoute: DemoTanstackQueryRoute,
   OthersIndexRoute: OthersIndexRoute,
   DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,
 }
