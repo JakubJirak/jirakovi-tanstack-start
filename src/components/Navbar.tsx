@@ -1,6 +1,6 @@
 import { linkOptions } from "@tanstack/react-router";
 import { FaListUl } from "react-icons/fa6";
-import { FiLogIn } from "react-icons/fi";
+
 import { GoHome } from "react-icons/go";
 import { LuCalendarDays, LuThermometerSun } from "react-icons/lu";
 import { PiDotsNineBold } from "react-icons/pi";
@@ -49,13 +49,6 @@ function Navbar({ isOpen, setIsOpen }: NavbarProps) {
         to={linkOptions({ to: "/others" }).to}
         text="Ostatní"
         icon={<PiDotsNineBold />}
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-      />
-      <NavbarLink
-        to={linkOptions({ to: "/login" }).to}
-        text="Login"
-        icon={<FiLogIn />}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
       />

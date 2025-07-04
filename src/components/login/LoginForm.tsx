@@ -1,9 +1,13 @@
 import { useLoginContext } from "@/data/Context/LoginContext.tsx";
 import { authClient } from "@/lib/auth-client.ts";
-import { useState } from "react";
+import { type Dispatch, type SetStateAction, useState } from "react";
 import type React from "react";
 
-const LoginForm = () => {
+interface LoginForm {
+  setZalozit: Dispatch<SetStateAction<boolean>>;
+}
+
+const LoginForm = ({ setZalozit }: LoginForm) => {
   const { password, setPassword, setLogged } = useLoginContext();
   const [email, setEmail] = useState<string>("");
   const [error, setError] = useState<string>("");
@@ -40,23 +44,24 @@ const LoginForm = () => {
     <>
       <form
         onSubmit={validate2}
-        className="bg-primary-900 w-[90%] flex flex-col rounded-xl p-4 text-xl max-w-[500px] mx-auto mt-4"
+        className="bg-primary-900 w-[90%] flex flex-col rounded-2xl p-4 text-xl max-w-[480px] mx-auto mt-4"
       >
-        <h1 className="text-center text-3xl font-semibold mb-5">
+        <h1 className="text-center text-3xl font-semibold mb-8">
           Přihlásit se
         </h1>
-        <label className="mb-1 text-gray-300 text-lg" htmlFor="username">
+        <label className="mb-2 text-gray-200 text-lg" htmlFor="username">
           Email
         </label>
         <input
           required
           value={email}
+          placeholder="email@example.com"
           onChange={(e) => setEmail(e.target.value)}
           type="email"
           id="username"
-          className="bg-primary-800 focus:outline-none px-2 py-1 rounded-lg mb-4"
+          className="bg-primary-800 focus:outline-none px-2 py-1 rounded-lg mb-6 placeholder:text-lg"
         />
-        <label className="mb-1text-gray-300 text-lg" htmlFor="password">
+        <label className="mb-2 text-gray-200 text-lg" htmlFor="password">
           Heslo
         </label>
         <input
@@ -65,7 +70,7 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           id="password"
-          className="bg-primary-800 focus:outline-none px-2 py-1 rounded-lg mb-4"
+          className="bg-primary-800 focus:outline-none px-2 py-1 rounded-lg mb-6"
         />
         <button
           type="submit"
@@ -73,6 +78,16 @@ const LoginForm = () => {
         >
           {loading ? "Načítaní" : "Přihlásit se"}
         </button>
+        <p className="text-lg mt-4 text-center">
+          Nemáte účet?{" "}
+          <button
+            onClick={() => setZalozit(true)}
+            className="hover:underline cursor-pointer"
+            type="button"
+          >
+            Zaregistrujte se
+          </button>
+        </p>
         <p
           className={`${error !== "" && "mt-5"} text-red-500 text-center text-lg`}
         >
