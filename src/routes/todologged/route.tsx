@@ -28,7 +28,7 @@ function RouteComponent() {
       )}
       {!session && (
         <>
-          <p className="text-2xl text-center">
+          <p className="text-2xl text-center mt-3">
             Pro přístup k todolistu se musíte přihlásit
           </p>
           <Link

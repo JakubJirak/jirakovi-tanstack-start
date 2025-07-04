@@ -5,7 +5,6 @@ import { FiLogOut } from "react-icons/fi";
 function Header() {
   const odhlasit = async () => {
     await authClient.signOut();
-    alert("Sign Out!");
   };
 
   const { data: session } = authClient.useSession();

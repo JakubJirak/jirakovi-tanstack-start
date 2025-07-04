@@ -107,7 +107,7 @@ const SignInForm = ({ setZalozit }: LoginForm) => {
         </form>
       )}
       {created && (
-        <h1 className="text-2xl text-center">
+        <h1 className="text-2xl text-center mt-3">
           Váš účet byl úspěšně vytvořen. Nyní se přihlaste
         </h1>
       )}

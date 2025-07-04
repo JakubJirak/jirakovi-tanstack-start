@@ -12,7 +12,7 @@ export function RouteComponent() {
     <>
       {!session && !isPending && (
         <>
-          <p className="text-2xl text-center">
+          <p className="text-2xl mt-3 text-center">
             Pro přístup ke kalendari se musíte přihlásit
           </p>
           <Link
