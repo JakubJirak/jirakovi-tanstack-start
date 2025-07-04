@@ -28,7 +28,7 @@ function Header() {
           type="button"
           className="text-xl mr-3 bg-primary-800 flex items-center p-2.5 rounded-2xl cursor-pointer hover:bg-primary-700 transition-all duration-200"
         >
-          Přihlásit se
+          Přihlásit
         </Link>
       )}
     </header>

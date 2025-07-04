@@ -2,19 +2,29 @@ import MobileHeaders from "@/components/dashboard/MobileHeaders.tsx";
 import OthersCom from "@/components/dashboard/others/OthersCom.tsx";
 import StatsCom from "@/components/dashboard/stats/StatsCom.tsx";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { RouteComponent as Calendar } from "../routes/calendar/route.tsx";
-import { RouteComponent as Weather } from "../routes/weather/route.tsx";
 import "../styles.css";
+import WeatherWidget from "@/components/weather/weatherWidget/WeatherWidget.tsx";
+import { useWeatherContext } from "@/data/Context/WeatherContext.tsx";
+import { codes } from "@/data/weather-codes.ts";
 
 export const Route = createFileRoute("/")({
   component: App,
 });
 
 function App() {
+  const { weatherData } = useWeatherContext();
+
   useEffect(() => {
     window.document.title = "Jirákovi 2.0 | Dashboard";
   }, []);
+
+  const codeData = useMemo(
+    () =>
+      codes.find((code) => code.code === weatherData?.current?.condition?.code),
+    [weatherData],
+  );
 
   return (
     <>
@@ -22,7 +32,12 @@ function App() {
       <div className="grid grid-cols-1 gap-3 lg:hidden w-[95%] mx-auto mt-3 pb-3">
         {/* <MobileHeaders element={<TodolistCom />} header="Todolist" /> */}
         <MobileHeaders element={<Calendar />} header="Kalendář" />
-        <MobileHeaders element={<Weather />} header="Počasí" />
+        {weatherData && (
+          <MobileHeaders
+            element={<WeatherWidget codeData={codeData} />}
+            header="Počasí"
+          />
+        )}
         <MobileHeaders element={<StatsCom />} header="Statistiky" />
         <MobileHeaders element={<OthersCom />} header="Ostatní" />
       </div>

@@ -1,3 +1,4 @@
+import WeatherDayWidget from "@/components/weather/dayForecast/WeatherDayWidget.tsx";
 import TodayForecast from "@/components/weather/todayForecast/TodayForecast.tsx";
 import WeatherWidget from "@/components/weather/weatherWidget/WeatherWidget.tsx";
 import { useWeatherContext } from "@/data/Context/WeatherContext.tsx";
@@ -59,13 +60,18 @@ export function RouteComponent() {
       >
         <RiResetLeftFill size={20} />
       </button>
-      <div className="grid lg:grid-rows-[1fr_1fr] lg:h-[91vh] gap-3 overflow-hidden">
+      <div className="grid lg:grid-rows-[500px_500px_500px] lg:h-[91vh] gap-3 overflow-x-hidden">
         <div className="grid grid-cols-1 gap-3 grid-rows-2 lg:grid-rows-1 lg:grid-cols-[3fr_7fr] overflow-hidden">
           <WeatherWidget codeData={codeData} />
-          <TodayForecast />
+          <TodayForecast day={0} />
         </div>
-        <div className="bg-primary-800/20 rounded-xl overflow-hidden">
-          predpoved pro dalsi dva dny
+        <div className="grid grid-cols-1 gap-3 grid-rows-2 lg:grid-rows-1 lg:grid-cols-[3fr_7fr] overflow-hidden">
+          <WeatherDayWidget day={1} />
+          <TodayForecast day={1} />
+        </div>
+        <div className="grid grid-cols-1 gap-3 grid-rows-2 lg:grid-rows-1 lg:grid-cols-[3fr_7fr] overflow-hidden">
+          <WeatherDayWidget day={2} />
+          <TodayForecast day={2} />
         </div>
       </div>
 

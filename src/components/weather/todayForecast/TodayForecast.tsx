@@ -3,9 +3,13 @@ import { useWeatherContext } from "@/data/Context/WeatherContext.tsx";
 import { getImage } from "@/data/Functions/weather-functions.ts";
 import { codes } from "@/data/weather-codes.ts";
 
-const TodayForecast = () => {
+interface WeatherForecastProps {
+  day: number;
+}
+
+const TodayForecast = ({ day }: WeatherForecastProps) => {
   const { weatherData } = useWeatherContext();
-  const todayFrc = weatherData?.forecast.forecastday[0]?.hour;
+  const todayFrc = weatherData?.forecast.forecastday[day]?.hour;
   if (!weatherData) return null;
 
   return (
