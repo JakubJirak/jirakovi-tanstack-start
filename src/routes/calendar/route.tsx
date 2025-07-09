@@ -37,14 +37,17 @@ export function RouteComponent() {
         </>
       )}
       {session && (
-        <div>
+        <div className="dark flex flex-col lg:flex-row">
+          <div className="flex-1">
+            <p>{date?.toLocaleDateString()}</p>
+          </div>
           <Calendar
             locale={cs}
             mode="single"
             defaultMonth={date}
             selected={date}
             onSelect={(d) => d && setDate(d)}
-            className="rounded-lg bg-primary-900 shadow-sm [--cell-size:--spacing(10)] sm:[--cell-size:--spacing(20)] md:[--cell-size:--spacing(28)]"
+            className="rounded-lg w-full lg:w-[unset] bg-primary-800/20 shadow-sm [--cell-size:--spacing(8)] sm:[--cell-size:--spacing(20)] md:[--cell-size:--spacing(25)]"
             components={{
               DayButton: ({ children, modifiers, day, ...props }) => {
                 const dayString = toLocalISODateString(day.date);
@@ -53,9 +56,7 @@ export function RouteComponent() {
                 return (
                   <CalendarDayButton day={day} modifiers={modifiers} {...props}>
                     {children}
-                    {isSpecial && !modifiers.outside && (
-                      <span>{toLocalISODateString(day.date)}</span>
-                    )}
+                    {isSpecial && !modifiers.outside && <span>Pozn.</span>}
                   </CalendarDayButton>
                 );
               },
