@@ -1,5 +1,8 @@
+import { Calendar, CalendarDayButton } from "@/components/ui/calendar.tsx";
 import { authClient } from "@/lib/auth-client.ts";
 import { Link, createFileRoute, linkOptions } from "@tanstack/react-router";
+import { cs } from "date-fns/locale";
+import { useState } from "react";
 
 export const Route = createFileRoute("/calendar")({
   component: RouteComponent,
@@ -7,6 +10,16 @@ export const Route = createFileRoute("/calendar")({
 
 export function RouteComponent() {
   const { data: session, isPending } = authClient.useSession();
+  const [date, setDate] = useState<Date | undefined>(new Date());
+
+  function toLocalISODateString(date: Date | undefined): string {
+    if (date === undefined) return "";
+    const tzOff = date.getTimezoneOffset() * 60000;
+    const localDate = new Date(date.getTime() - tzOff);
+    return localDate.toISOString().slice(0, 10);
+  }
+
+  const dates: string[] = ["2025-07-12", "2025-07-14", "2025-07-16"];
 
   return (
     <>
@@ -23,7 +36,33 @@ export function RouteComponent() {
           </Link>
         </>
       )}
-      {session && <h1>work in progress</h1>}
+      {session && (
+        <div>
+          <Calendar
+            locale={cs}
+            mode="single"
+            defaultMonth={date}
+            selected={date}
+            onSelect={(d) => d && setDate(d)}
+            className="rounded-lg bg-primary-900 shadow-sm [--cell-size:--spacing(10)] sm:[--cell-size:--spacing(20)] md:[--cell-size:--spacing(28)]"
+            components={{
+              DayButton: ({ children, modifiers, day, ...props }) => {
+                const dayString = toLocalISODateString(day.date);
+                const isSpecial = dates.includes(dayString);
+
+                return (
+                  <CalendarDayButton day={day} modifiers={modifiers} {...props}>
+                    {children}
+                    {isSpecial && !modifiers.outside && (
+                      <span>{toLocalISODateString(day.date)}</span>
+                    )}
+                  </CalendarDayButton>
+                );
+              },
+            }}
+          />
+        </div>
+      )}
     </>
   );
 }
