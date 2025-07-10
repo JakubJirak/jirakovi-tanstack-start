@@ -25,6 +25,7 @@ type day = {
     maxtemp_c: number;
     mintemp_c: number;
     daily_chance_of_rain: number;
+    totalprecip_mm: number;
     condition: {
       code: number;
     };

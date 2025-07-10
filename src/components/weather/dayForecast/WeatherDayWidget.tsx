@@ -3,8 +3,9 @@ import { useWeatherContext } from "@/data/Context/WeatherContext.tsx";
 import { getImage, getText } from "@/data/Functions/weather-functions.ts";
 import { codes } from "@/data/weather-codes.ts";
 import { useMemo } from "react";
-import { FaTemperatureArrowDown, FaTemperatureArrowUp } from "react-icons/fa6";
-import { IoRainy } from "react-icons/io5";
+import { FaTemperatureArrowDown } from "react-icons/fa6";
+import { IoRainyOutline } from "react-icons/io5";
+import { PiWavesBold } from "react-icons/pi";
 
 interface WeatherWidget {
   day: 1 | 2;
@@ -45,9 +46,9 @@ const WeatherWidget = ({ day }: WeatherWidget) => {
   const icontext = getText(weatherData?.current?.is_day, codeData);
   const city = weatherData?.location?.name;
   const updated = weatherData.forecast.forecastday[day].date;
-  const temp = weatherData.forecast.forecastday[day].day.avgtemp_c;
   const max = `${weatherData.forecast.forecastday[day].day.maxtemp_c} °C`;
   const min = `${weatherData.forecast.forecastday[day].day.mintemp_c} °C`;
+  const rain = `${weatherData.forecast.forecastday[day].day.totalprecip_mm} mm`;
   const chanceOfRain = `${weatherData.forecast.forecastday[day].day.daily_chance_of_rain} %`;
 
   return (
@@ -71,22 +72,18 @@ const WeatherWidget = ({ day }: WeatherWidget) => {
           </p>
         </div>
         <p className="text-4xl sm:text-5xl md:text-6xl ml-[-30px] lg:text-[3.5vw] font-bold">
-          {temp} °C
+          {max} °C
         </p>
       </div>
       <div className="flex flex-col px-4 pl-4 py-4 gap-4 justify-between">
-        <WeatherWidgetRow
-          icon={<FaTemperatureArrowUp />}
-          title="Maximálně"
-          value={max}
-        />
         <WeatherWidgetRow
           icon={<FaTemperatureArrowDown />}
           title="Minimálně"
           value={min}
         />
+        <WeatherWidgetRow icon={<PiWavesBold />} title="Srážky" value={rain} />
         <WeatherWidgetRow
-          icon={<IoRainy />}
+          icon={<IoRainyOutline />}
           title="Šance deště"
           value={chanceOfRain}
         />
