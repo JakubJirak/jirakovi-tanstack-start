@@ -72,7 +72,7 @@ const WeatherWidget = ({ day }: WeatherWidget) => {
           </p>
         </div>
         <p className="text-4xl sm:text-5xl md:text-6xl ml-[-30px] lg:text-[3.5vw] font-bold">
-          {max} °C
+          {max}
         </p>
       </div>
       <div className="flex flex-col px-4 pl-4 py-4 gap-4 justify-between">
