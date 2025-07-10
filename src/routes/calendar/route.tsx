@@ -37,7 +37,7 @@ export function RouteComponent() {
         </>
       )}
       {session && (
-        <div className="dark flex flex-col lg:flex-row">
+        <div className="dark flex flex-col lg:flex-row dark">
           <div className="flex-1">
             <p>{date?.toLocaleDateString()}</p>
           </div>
@@ -47,7 +47,7 @@ export function RouteComponent() {
             defaultMonth={date}
             selected={date}
             onSelect={(d) => d && setDate(d)}
-            className="rounded-lg w-full lg:w-[unset] bg-primary-800/20 shadow-sm [--cell-size:--spacing(8)] sm:[--cell-size:--spacing(20)] md:[--cell-size:--spacing(25)]"
+            className="rounded-2xl w-[95%] border-2 border-border mx-auto shadow-sm md:w-[unset] md:mx-[unset] md:[--cell-size:--spacing(15)] xl:[--cell-size:--spacing(20)]"
             components={{
               DayButton: ({ children, modifiers, day, ...props }) => {
                 const dayString = toLocalISODateString(day.date);
