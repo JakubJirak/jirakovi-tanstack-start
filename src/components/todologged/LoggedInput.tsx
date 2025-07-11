@@ -65,7 +65,7 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
     <>
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
       <div
-        className={` ${mobileShow ? "grid" : "hidden"} absolute w-full h-[100vh] z-20 bg-black/80 top-0 left-0
+        className={` ${mobileShow ? "grid" : "hidden"} absolute w-full h-[100vh] z-20 bg-black/85 top-0 left-0
             md:hidden`}
         onClick={() => {
           setMobileShow(!mobileShow);
@@ -127,15 +127,13 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
       </form>
       <button
         type="button"
-        className="bg-secondary-800 flex rounded-full ml-3 mr-1 hover:bg-secondary-900 cursor-pointer transition duration-200 z-11 fixed bottom-8 right-7
+        className="bg-primary flex rounded-full ml-3 mr-1 hover:bg-primary cursor-pointer transition duration-200 z-11 fixed bottom-8 right-7
                 md:hidden"
         onClick={() => {
           setMobileShow(!mobileShow);
         }}
       >
-        <span className="w-17 relative z-17 h-17 flex items-center justify-center text-7xl font-light">
-          +
-        </span>
+        <span className="w-17 relative z-17 h-17 text-7xl font-light">+</span>
       </button>
     </>
   );

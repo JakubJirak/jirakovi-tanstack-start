@@ -26,7 +26,7 @@ const LoggedTodo = ({
       <button
         type="button"
         onClick={() => handleUpdate(id, isDone)}
-        className={` ${isDone ? "bg-secondary-800 border-secondary-800" : ""} absolute right-3.5 top-2 w-9 h-9 border-secondary-700 border-2 rounded-full ml-2 flex items-center justify-center
+        className={` ${isDone ? "bg-secondary-800 border-secondary-800" : ""} absolute right-3.5 top-2 w-9 h-9 border-primary border-2 rounded-full ml-2 flex items-center justify-center
                 md:relative md:top-[unset] md:right-[unset]`}
       >
         {isDone ? <IoMdCheckmark className="text-3xl font-bold" /> : ""}
