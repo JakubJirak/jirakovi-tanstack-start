@@ -55,10 +55,10 @@ export function RouteComponent() {
     <div className="p-3 lg:p-0">
       <button
         onClick={getData}
-        className="absolute m-1 text-gray-300 bg-primary-800 p-1 rounded-2xl"
+        className="absolute m-1 text-gray-300 bg-secondary p-1 rounded-2xl hover:bg-accent transition duration-200 cursor-pointer"
         type="button"
       >
-        <RiResetLeftFill size={20} />
+        <RiResetLeftFill size={24} />
       </button>
       <div className="grid lg:grid-rows-[500px_500px_500px] lg:h-[91vh] gap-3 overflow-x-hidden">
         <div className="grid grid-cols-1 gap-3 grid-rows-2 lg:grid-rows-1 lg:grid-cols-[3fr_7fr] overflow-hidden">

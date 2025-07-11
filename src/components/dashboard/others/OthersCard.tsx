@@ -11,7 +11,7 @@ const OthersCard = ({ title, icon, path }: OstatniProps) => {
   return (
     <Link
       to={path}
-      className="bg-secondary w-full h-25 flex flex-col items-center justify-evenly rounded-xl hover:bg-popover transition duration-200 min-h-25
+      className="bg-secondary w-full h-25 flex flex-col items-center justify-evenly rounded-xl hover:bg-accent transition duration-200 min-h-25
               sm:h-auto lg:min-h-[unset]"
     >
       <p className="text-4xl lg:text-4xl 2xl:text-5xl">{icon}</p>
