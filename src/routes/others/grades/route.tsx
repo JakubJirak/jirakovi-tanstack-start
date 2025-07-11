@@ -43,7 +43,7 @@ function RouteComponent() {
   };
 
   return (
-    <div className="p-4 rounded-xl w-[min(450px,95%)] bg-primary-900 mx-auto mt-4 md:mt-20">
+    <div className="p-4 rounded-xl w-[min(450px,95%)] bg-card border-border border mx-auto mt-4">
       <h1 className="text-center mb-6 text-2xl">Kalkulačka průměru</h1>
 
       <form
@@ -55,7 +55,7 @@ function RouteComponent() {
             Známka:
           </label>
           <input
-            className="w-20 bg-primary-700/30 focus:outline-none px-2 py-1 rounded-lg md:w-15"
+            className="w-20 bg-secondary focus:outline-none px-2 py-1 rounded-lg md:w-15"
             value={znamka}
             min="1"
             max="5"
@@ -70,7 +70,7 @@ function RouteComponent() {
             Váha:
           </label>
           <input
-            className="w-15 bg-primary-700/30 focus:outline-none px-2 py-1 rounded-lg md:w-15"
+            className="w-15 bg-secondary focus:outline-none px-2 py-1 rounded-lg md:w-15"
             value={vaha}
             min="1"
             max="10"
@@ -83,7 +83,7 @@ function RouteComponent() {
 
         <button
           type="submit"
-          className="text-xl py-1 px-2 rounded-xl hover:bg-secondary-800 transition duration-200 cursor-pointer bg-secondary-700"
+          className="text-xl py-1 px-2 rounded-xl hover:bg-secondary-800 transition duration-200 cursor-pointer bg-primary"
         >
           Přidat
         </button>

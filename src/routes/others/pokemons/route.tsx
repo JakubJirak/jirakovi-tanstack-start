@@ -42,7 +42,7 @@ function RouteComponent() {
     <div className="w-[95%] max-w-[700px] mx-auto">
       <form
         onSubmit={handleSubmit}
-        className="bg-primary-900 flex flex-col items-center justify-between rounded-xl p-4 my-6 text-xl"
+        className="bg-card border-border border flex flex-col items-center justify-between rounded-xl p-4 my-6 text-xl"
       >
         <h1
           className="text-2xl mt-1 mb-5 text-center
@@ -52,7 +52,7 @@ function RouteComponent() {
         </h1>
         <div className="flex items-center justify-between w-full gap-3">
           <input
-            className="focus:outline-none bg-primary-700/50 px-2 py-1 w-full rounded-lg"
+            className="focus:outline-none bg-secondary placeholder:text-lg px-2 py-1 w-full rounded-lg"
             type="text"
             placeholder="Zadej jméno Pokémona"
             value={input}
@@ -60,7 +60,7 @@ function RouteComponent() {
           />
           <button
             type="submit"
-            className="bg-secondary-700 px-2 py-1 rounded-lg hover:bg-secondary-800 cursor-pointer transition duration-200"
+            className="bg-primary px-2 py-1 rounded-lg hover:bg-secondary-800 cursor-pointer transition duration-200"
           >
             Hledat
           </button>

@@ -9,7 +9,7 @@ interface znamka {
 
 const Grade = ({ znamka, vaha, index, handleDelete }: znamka) => {
   return (
-    <div className="flex bg-primary-700/30 py-2 items-center px-4 rounded-2xl">
+    <div className="flex bg-secondary py-2 items-center px-4 rounded-2xl">
       <p className="flex-1 text-xl md:text-2xl">Známka: {znamka}</p>
       <p className="flex-1 text-xl md:text-2xl">Váha: {vaha}</p>
       <button

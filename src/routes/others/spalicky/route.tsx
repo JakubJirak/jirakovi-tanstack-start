@@ -31,16 +31,16 @@ function RouteComponent() {
   }
 
   return (
-    <div className="w-[95%] max-w-[520px] mx-auto mt-3 flex flex-col items-center justify-center">
+    <div className="w-[95%] max-w-[520px] mx-auto mt-4 flex flex-col items-center justify-center">
       <form
         onSubmit={vypocet}
-        className="bg-primary-900 w-full flex flex-col items-center justify-between rounded-xl p-4 text-xl"
+        className="bg-card border-border border w-full flex flex-col items-center justify-between rounded-xl p-4 text-xl"
       >
         <h1 className="text-2xl mb-5 text-center">
           Výpočet ingrediencí pro špalíčky
         </h1>
         <div className="flex items-center justify-between w-full">
-          <label htmlFor="brambory" className="min-w-33">
+          <label htmlFor="brambory" className="min-w-33 text-muted-foreground">
             Brambory (g):
           </label>
           <input
@@ -50,11 +50,11 @@ function RouteComponent() {
             max="50000"
             value={brambory}
             onChange={(e) => setBrambory(e.target.value)}
-            className="w-[20%] mr-auto px-2 py-1 rounded-lg bg-primary-700/50 focus:outline-none"
+            className="w-[20%] mr-auto px-2 py-1 rounded-lg bg-secondary focus:outline-none"
           />
           <button
             type="submit"
-            className="bg-secondary-700 px-2 py-1 text-lg md:text-xl rounded-lg hover:bg-secondary-800 cursor-pointer transition duration-200"
+            className="bg-primary px-2 py-1 text-lg md:text-xl rounded-lg hover:bg-secondary-800 cursor-pointer transition duration-200"
           >
             Vypočítat
           </button>
@@ -62,7 +62,7 @@ function RouteComponent() {
       </form>
 
       {vysledek && (
-        <div className="w-full mt-5 text-xl md:text-2xl flex flex-col gap-5 bg-primary-900 rounded-xl p-4">
+        <div className="w-full mt-5 text-xl md:text-2xl flex flex-col gap-5 bg-card border-border border rounded-xl p-4">
           <div className="grid grid-cols-[40px_75px_1fr] md:grid-cols-[50px_90px_1fr] items-center gap-5 md:w-75 mx-auto">
             <PiBowlFood size={48} />
             <p>Počet:</p>
