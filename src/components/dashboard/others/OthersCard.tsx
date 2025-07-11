@@ -11,11 +11,11 @@ const OthersCard = ({ title, icon, path }: OstatniProps) => {
   return (
     <Link
       to={path}
-      className="bg-primary-900 w-full h-25 flex flex-col items-center justify-evenly rounded-xl hover:bg-primary-800 transition duration-200 min-h-30
+      className="bg-secondary w-full h-25 flex flex-col items-center justify-evenly rounded-xl hover:bg-popover transition duration-200 min-h-25
               sm:h-auto lg:min-h-[unset]"
     >
-      <p className="text-5xl lg:text-4xl 2xl:text-5xl">{icon}</p>
-      <h2 className="sm:text-xl lg:text-lg 2xl:text-xl">{title}</h2>
+      <p className="text-4xl lg:text-4xl 2xl:text-5xl">{icon}</p>
+      <h2 className="text-sm sm:text-xl lg:text-lg 2xl:text-xl">{title}</h2>
     </Link>
   );
 };

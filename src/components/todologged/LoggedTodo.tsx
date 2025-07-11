@@ -20,7 +20,7 @@ const LoggedTodo = ({
 }: LoggedTodoProps) => {
   return (
     <li
-      className={` ${isDone ? "bg-primary-900/40" : ""} grid [grid-template-rows:1fr_auto] gap-2 items-center bg-primary-800/40 p-2 rounded-xl relative z-10 transition duration-200
+      className={` ${isDone ? "bg-primary-900/40" : ""} grid [grid-template-rows:1fr_auto] gap-2 items-center bg-card border border-border p-2 rounded-xl relative z-10 transition duration-200
         md:[grid-template-columns:auto_1fr_auto] md:grid-rows-1 md:gap-3`}
     >
       <button

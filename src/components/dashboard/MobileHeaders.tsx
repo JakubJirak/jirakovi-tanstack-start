@@ -12,7 +12,7 @@ const MobileHeaders = ({ element, header }: MobileHeadersProps) => {
 
   return (
     <div
-      className={`${bool ? "" : "h-14 overflow-hidden"}  bg-primary-800/20 w-full max-h-[700px] overflow-auto p-3 rounded-xl relative
+      className={`${bool ? "" : "h-14 overflow-hidden"}  bg-card border border-border w-full max-h-[700px] overflow-auto p-3 rounded-xl relative
                     md:px-3`}
     >
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}

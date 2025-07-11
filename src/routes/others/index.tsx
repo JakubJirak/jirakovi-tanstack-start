@@ -28,7 +28,7 @@ export function RouteComponent() {
   }, []);
 
   return (
-    <div className="grid gap-3 sm:grid-cols-[repeat(auto-fit,minmax(260px,1fr))] p-3 md:p-0">
+    <div className="grid gap-4 sm:grid-cols-[repeat(auto-fit,minmax(260px,1fr))] p-3 md:p-0">
       {ostatniData.map((ostatni, index) => {
         const IconComponent = iconMap[ostatni.id] || DefaultIcon;
         return (

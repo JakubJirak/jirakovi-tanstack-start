@@ -44,7 +44,7 @@ const WeatherWidget = ({ codeData }: WeatherWidget) => {
   const wind = `${String(weatherData.current?.wind_kph)} km/h`;
 
   return (
-    <div className="bg-primary-800/20 grid grid-rows-[30px_1fr_1fr] rounded-xl lg:grid-rows-[40px_4fr_3fr] h-full overflow-hidden">
+    <div className="bg-card lg:border border-border grid grid-rows-[30px_1fr_1fr] rounded-xl lg:grid-rows-[40px_4fr_3fr] h-full overflow-hidden">
       <div className="flex justify-around items-center text-gray-400">
         <p>{city}</p>
         <p>{updated}</p>

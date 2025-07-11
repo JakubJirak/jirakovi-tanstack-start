@@ -74,10 +74,13 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
 
       <form
         onSubmit={handleAdd}
-        className={` ${mobileShow ? "grid" : "hidden"} absolute -translate-x-1/2 left-1/2 top-[20vh] w-[90%] bg-primary-900 p-2 text-xl items-center rounded-xl z-20 px-3 mb-4
+        className={` ${mobileShow ? "grid" : "hidden"} absolute -translate-x-1/2 left-1/2 top-[20vh] w-[90%] bg-card border border-border p-2 text-xl items-center rounded-xl z-20 px-3 mb-4
                   md:flex md:relative md:grid-rows-1 md:top-[unset] md:w-full md:h-auto md:px-2`}
       >
-        <label htmlFor="valInp" className="md:hidden m-1 text-gray-200">
+        <label
+          htmlFor="valInp"
+          className="md:hidden text-lg m-1 text-muted-foreground"
+        >
           Zadejte úkol
         </label>
         <input
@@ -86,15 +89,18 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
           placeholder="Úkol..."
           required
           id="valInp"
-          className="px-2 focus:outline-none w-full py-2 mb-4 rounded-lg bg-primary-800
+          className="px-2 focus:outline-none w-full py-2 mb-4 rounded-lg bg-secondary
                        md:py-0 md:my-0 md:bg-transparent"
           onChange={(e) => setInpValue(e.target.value)}
         />
-        <label htmlFor="dateInp" className="md:hidden m-1 text-gray-200">
+        <label
+          htmlFor="dateInp"
+          className="md:hidden m-1 text-gray-200 text-lg text-muted-foreground"
+        >
           Zadejte datum
         </label>
         <input
-          className="mb-6 w-full bg-primary-800 py-2 px-2 rounded-lg focus:outline-none
+          className="mb-6 w-full bg-secondary py-2 px-2 rounded-lg focus:outline-none
                 md:w-40 md:my-0 md:mb-0"
           placeholder="Datum..."
           type="date"
@@ -106,14 +112,14 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
 
         <button
           onClick={() => setMobileShow(!mobileShow)}
-          className="bg-secondary-800  flex rounded-full items-center justify-center hover:bg-secondary-900 cursor-pointer transition duration-200 h-10 mb-1.5
+          className="bg-primary flex rounded-full items-center justify-center hover:bg-secondary-900 cursor-pointer transition duration-200 h-10 mb-1.5
                     md:ml-3 md:mr-1 md:mb-0"
           type="submit"
         >
           <span className="md:hidden mr-2">Přidat</span>
           <span
             className="hidden text-5xl font-light
-                    md:flex md:w-10 md:h-10 md:mb-4 md:pl-1"
+                    md:flex md:w-10 md:h-14 md:pl-1"
           >
             +
           </span>
@@ -127,7 +133,7 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
           setMobileShow(!mobileShow);
         }}
       >
-        <span className="w-17 relative z-17 h-17 flex items-center justify-center text-7xl font-light">
+        <span className="w-17 relative pb-4 z-17 h-17 flex items-center justify-center text-7xl font-light">
           +
         </span>
       </button>

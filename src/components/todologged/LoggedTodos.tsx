@@ -81,7 +81,7 @@ const LoggedTodos = ({ fetchAgain }: LoggedTodosProps) => {
       <button
         type="button"
         onClick={() => refetch()}
-        className="w-20 justify-self-end bg-primary-800 mb-[-8px] md:mb-0 mt-2 py-2 rounded-2xl hover:bg-primary-700 transition duration-300 ease-in-out cursor-pointer"
+        className="w-20 justify-self-end bg-secondary mb-[-8px] md:mb-0 mt-2 py-2 rounded-2xl hover:bg-popover transition duration-300 ease-in-out cursor-pointer"
       >
         Refetch
       </button>

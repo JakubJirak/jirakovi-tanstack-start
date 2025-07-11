@@ -14,8 +14,8 @@ interface NavbarProps {
 function Navbar({ isOpen, setIsOpen }: NavbarProps) {
   return (
     <nav
-      className={` ${isOpen ? "flex" : "hidden"} [grid-area:'navbar'] absolute top-0 right-0 w-[clamp(220px,55%,300px)] h-screen bg-primary-900 z-20
-            md:static md:w-auto md:h-auto md:bg-transparent md:flex flex-col md:border-r-2 border-primary-800 pt-2`}
+      className={` ${isOpen ? "flex" : "hidden"} [grid-area:'navbar'] absolute top-0 right-0 w-[clamp(220px,55%,300px)] h-screen bg-card z-20
+            md:static md:w-auto md:h-auto md:bg-transparent md:flex flex-col md:border-r-2 border-border pt-2`}
     >
       <NavbarLink
         to={linkOptions({ to: "/" }).to}

@@ -13,7 +13,7 @@ const TodayForecast = ({ day }: WeatherForecastProps) => {
   if (!weatherData) return null;
 
   return (
-    <div className="bg-primary-800/20 rounded-xl overflow-x-auto">
+    <div className="bg-card border border-border rounded-xl overflow-x-auto">
       <div className="grid grid-cols-6 grid-rows-2 gap-4 h-full p-4 min-w-[1010px]">
         {todayFrc?.map((hour, index) => {
           if (index % 2 === 0) {

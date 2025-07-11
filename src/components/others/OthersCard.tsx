@@ -12,7 +12,7 @@ const OthersCard = ({ longHead, desc, icon, path }: OthersCardProps) => {
   return (
     <Link
       to={path}
-      className="bg-primary-900 w-full flex flex-col items-center rounded-xl hover:bg-primary-800 transition duration-200 p-4
+      className="bg-card border-1 border-border w-full flex flex-col items-center rounded-xl hover:bg-popover transition duration-200 p-4
               sm:h-70"
     >
       <p className="text-7xl mb-4">{icon}</p>

@@ -25,6 +25,10 @@ const OthersCom = () => {
         lg:grid-cols-[1fr_1fr_1fr_1fr]"
     >
       {ostatniData.map((ostatni, index) => {
+        if (index > 3) {
+          return null;
+        }
+
         const IconComponent = iconMap[ostatni.id] || DefaultIcon;
 
         return (

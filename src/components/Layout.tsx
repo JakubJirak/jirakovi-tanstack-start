@@ -31,7 +31,7 @@ function Layout() {
         md:grid-cols-[180px_1fr] md:grid-rows-[6vh_1fr] md:[grid-template-areas:'name_header'_'navbar_main']
         lg:grid-cols-[clamp(180px,10vw,200px)_1fr]"
     >
-      <h2 className="[grid-area:name] text-2xl flex items-center justify-center border-b-2 md:border-r-2 border-primary-800">
+      <h2 className="[grid-area:name] text-2xl flex items-center justify-center border-b-2 md:border-r-2 border-border">
         Jirákovi 2.0
       </h2>
       <Header />
@@ -39,7 +39,7 @@ function Layout() {
 
       <button
         type="button"
-        className="border-b-2 border-primary-800 md:hidden [grid-area:icon] text-2xl pr-4"
+        className="border-b-2 border-border md:hidden [grid-area:icon] text-2xl pr-4"
         onClick={handleClick}
       >
         <FiMenu />
