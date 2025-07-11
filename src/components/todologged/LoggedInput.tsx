@@ -133,7 +133,7 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
           setMobileShow(!mobileShow);
         }}
       >
-        <span className="w-17 relative pb-4 z-17 h-17 flex items-center justify-center text-7xl font-light">
+        <span className="w-17 relative z-17 h-17 flex items-center justify-center text-7xl font-light">
           +
         </span>
       </button>
