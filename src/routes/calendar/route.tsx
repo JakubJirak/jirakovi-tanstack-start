@@ -135,7 +135,7 @@ export function RouteComponent() {
             </p>
           )}
           {data?.length !== 0 && (
-            <div className="flex w-[95%] mx-auto lg:w-full gap-4 flex-col max-w-[1500px]">
+            <div className="flex w-[95%] mx-auto lg:w-full gap-4 pb-3 lg:pb-0 flex-col max-w-[1500px]">
               {data?.map((poznamka: Poznamka) => (
                 <LoggedTodo
                   key={poznamka.id}

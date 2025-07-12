@@ -77,7 +77,7 @@ const LoggedTodos = ({ fetchAgain }: LoggedTodosProps) => {
   }, [fetchAgain]);
 
   return (
-    <div className="grid gap-5">
+    <div className="grid gap-5 pb-3 lg:pb-0">
       <button
         type="button"
         onClick={() => refetch()}
