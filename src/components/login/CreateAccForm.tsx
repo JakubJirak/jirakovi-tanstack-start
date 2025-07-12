@@ -46,12 +46,12 @@ const SignInForm = ({ setZalozit }: LoginForm) => {
       {!created && (
         <form
           onSubmit={validate}
-          className="bg-primary-900 w-[90%] flex flex-col rounded-2xl p-4 text-xl max-w-[480px] mx-auto mt-4"
+          className="bg-card border border-border w-[90%] flex flex-col rounded-2xl p-4 text-xl max-w-[480px] mx-auto mt-4"
         >
           <h1 className="text-center text-3xl font-semibold mb-8">
             Vytvořit účet
           </h1>
-          <label className="mb-2 text-gray-200 text-lg" htmlFor="name">
+          <label className="mb-1 text-lg text-muted-foreground" htmlFor="name">
             Uživatelské jméno
           </label>
           <input
@@ -60,9 +60,9 @@ const SignInForm = ({ setZalozit }: LoginForm) => {
             onChange={(e) => setName(e.target.value)}
             type="text"
             id="name"
-            className="bg-primary-800 focus:outline-none px-2 py-1 rounded-lg mb-6"
+            className="bg-secondary focus:outline-none px-2 py-1 rounded-lg mb-6"
           />
-          <label className="mb-2 text-gray-200 text-lg" htmlFor="email">
+          <label className="mb-1 text-lg text-muted-foreground" htmlFor="email">
             Email
           </label>
           <input
@@ -72,9 +72,12 @@ const SignInForm = ({ setZalozit }: LoginForm) => {
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             id="email"
-            className="bg-primary-800 focus:outline-none px-2 py-1 rounded-lg mb-6 placeholder:text-lg"
+            className="bg-secondary focus:outline-none px-2 py-1 rounded-lg mb-6 placeholder:text-lg"
           />
-          <label className="mb-2 text-gray-200 text-lg" htmlFor="password">
+          <label
+            className="mb-1 text-lg text-muted-foreground"
+            htmlFor="password"
+          >
             Heslo (min 8 znaků)
           </label>
           <input
@@ -84,11 +87,11 @@ const SignInForm = ({ setZalozit }: LoginForm) => {
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             id="password"
-            className="bg-primary-800 focus:outline-none px-2 py-1 rounded-lg mb-6"
+            className="bg-secondary focus:outline-none px-2 py-1 rounded-lg mb-6"
           />
           <button
             type="submit"
-            className="bg-secondary-700 mt-2 py-1 rounded-full hover:bg-secondary-800 cursor-pointer transition duration-200"
+            className="bg-primary mt-2 py-1 rounded-full hover:bg-secondary-800 cursor-pointer transition duration-200"
           >
             {loading ? "Načítaní" : "Vytvořit účet"}
           </button>
