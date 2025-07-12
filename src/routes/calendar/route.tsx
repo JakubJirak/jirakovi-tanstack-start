@@ -179,7 +179,7 @@ export function RouteComponent() {
         defaultMonth={date}
         selected={date}
         onSelect={(d) => d && setDate(d)}
-        className="rounded-2xl w-[95%] border-2 mt-3 lg:mt-0 border-border mx-auto shadow-sm md:w-[unset] md:mx-[unset] md:[--cell-size:--spacing(15)] xl:[--cell-size:--spacing(20)]"
+        className="rounded-2xl w-[95%] border-2 mt-3 max-h-[680px] lg:mt-0 border-border mx-auto shadow-sm md:w-[unset] md:mx-[unset] md:[--cell-size:--spacing(15)] xl:[--cell-size:--spacing(20)]"
         components={{
           DayButton: ({ children, modifiers, day, ...props }) => {
             const todoDates = allDates();
@@ -195,7 +195,7 @@ export function RouteComponent() {
           },
         }}
       />
-      <div className="flex-1">
+      <div className="flex-1 overflow-y-auto max-h-[90vh]">
         <h1 className="text-2xl text-center mb-3 font-semibold">
           {date?.toLocaleDateString()}
         </h1>
