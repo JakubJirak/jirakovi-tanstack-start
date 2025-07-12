@@ -46,6 +46,16 @@ const fetchData = createServerFn({ method: "GET" })
     return todosUser;
   });
 
+const fetchAllData = createServerFn({ method: "GET" })
+  .validator((data: { userId: string }) => data)
+  .handler(async ({ data }) => {
+    const todosUser = await db
+      .select()
+      .from(todos)
+      .where(eq(todos.userId, data.userId));
+    return todosUser;
+  });
+
 const addTodo = createServerFn({ method: "POST" })
   .validator(
     (data: { userId: string; text: string; date: string; isDone: boolean }) =>
@@ -84,9 +94,15 @@ export function RouteComponent() {
     enabled: !!session,
   });
 
+  const { data: allTodos, refetch: allRefetch } = useQuery({
+    queryKey: ["todos", userId],
+    queryFn: () => fetchAllData({ data: { userId } }),
+    enabled: !!session,
+  });
+
   const deleteMutation = useMutation({
     mutationFn: deleteData,
-    onSuccess: () => refetch(),
+    onSuccess: () => refetchAll(),
   });
 
   const handleDelete = (id: number) => {
@@ -102,12 +118,17 @@ export function RouteComponent() {
     updateMutation.mutate({ data: { id, isDone } });
   };
 
-  const dates: string[] = ["2025-07-12", "2025-07-14", "2025-07-16"];
+  const allDates = () => {
+    if (allTodos === undefined) {
+      return "";
+    }
+    return allTodos.map((todo) => todo.date);
+  };
 
   const mutationTodos = useMutation({
     mutationFn: addTodo,
     onError: (err) => console.log(err),
-    onSuccess: () => refetch(),
+    onSuccess: () => refetchAll(),
   });
 
   const addUserMutation = () => {
@@ -126,6 +147,11 @@ export function RouteComponent() {
     addUserMutation();
     setInpValue("");
   };
+
+  function refetchAll() {
+    refetch();
+    allRefetch();
+  }
 
   if (!session && !isPending) {
     return (
@@ -156,8 +182,9 @@ export function RouteComponent() {
         className="rounded-2xl w-[95%] border-2 mt-3 lg:mt-0 border-border mx-auto shadow-sm md:w-[unset] md:mx-[unset] md:[--cell-size:--spacing(15)] xl:[--cell-size:--spacing(20)]"
         components={{
           DayButton: ({ children, modifiers, day, ...props }) => {
+            const todoDates = allDates();
             const dayString = toLocalISODateString(day.date);
-            const isSpecial = dates.includes(dayString);
+            const isSpecial = todoDates.includes(dayString);
 
             return (
               <CalendarDayButton day={day} modifiers={modifiers} {...props}>
