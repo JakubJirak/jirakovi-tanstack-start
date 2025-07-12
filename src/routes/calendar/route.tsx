@@ -102,13 +102,38 @@ export function RouteComponent() {
   if (!session) return null;
 
   return (
-    <div className="dark flex gap-3 flex-col lg:flex-row">
+    <div className="dark flex gap-3 lg:flex-row-reverse flex-col lg:flex-row">
+      <Calendar
+        locale={cs}
+        mode="single"
+        defaultMonth={date}
+        selected={date}
+        onSelect={(d) => d && setDate(d)}
+        className="rounded-2xl w-[95%] border-2 mt-3 lg:mt-0 border-border mx-auto shadow-sm md:w-[unset] md:mx-[unset] md:[--cell-size:--spacing(15)] xl:[--cell-size:--spacing(20)]"
+        components={{
+          DayButton: ({ children, modifiers, day, ...props }) => {
+            const dayString = toLocalISODateString(day.date);
+            const isSpecial = dates.includes(dayString);
+
+            return (
+              <CalendarDayButton day={day} modifiers={modifiers} {...props}>
+                {children}
+                {isSpecial && !modifiers.outside && <span>Pozn.</span>}
+              </CalendarDayButton>
+            );
+          },
+        }}
+      />
       <div className="flex-1">
-        <h1 className="text-2xl text-center mb-5 font-semibold">
+        <h1 className="text-2xl text-center mb-3 font-semibold">
           {date?.toLocaleDateString()}
         </h1>
         <div>
-          {data?.length === 0 && <p>Pro tento den nemate zadne poznamky</p>}
+          {data?.length === 0 && (
+            <p className="text-center text-muted-foreground">
+              Pro tento den nemáte žádné poznámky
+            </p>
+          )}
           {data?.length !== 0 && (
             <div className="flex w-[95%] mx-auto lg:w-full gap-4 flex-col max-w-[1500px]">
               {data?.map((poznamka: Poznamka) => (
@@ -126,27 +151,6 @@ export function RouteComponent() {
           )}
         </div>
       </div>
-      <Calendar
-        locale={cs}
-        mode="single"
-        defaultMonth={date}
-        selected={date}
-        onSelect={(d) => d && setDate(d)}
-        className="rounded-2xl w-[95%] border-2 border-border mx-auto shadow-sm md:w-[unset] md:mx-[unset] md:[--cell-size:--spacing(15)] xl:[--cell-size:--spacing(20)]"
-        components={{
-          DayButton: ({ children, modifiers, day, ...props }) => {
-            const dayString = toLocalISODateString(day.date);
-            const isSpecial = dates.includes(dayString);
-
-            return (
-              <CalendarDayButton day={day} modifiers={modifiers} {...props}>
-                {children}
-                {isSpecial && !modifiers.outside && <span>Pozn.</span>}
-              </CalendarDayButton>
-            );
-          },
-        }}
-      />
     </div>
   );
 }
