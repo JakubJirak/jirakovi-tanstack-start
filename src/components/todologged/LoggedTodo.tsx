@@ -18,6 +18,8 @@ const LoggedTodo = ({
   handleDelete,
   handleUpdate,
 }: LoggedTodoProps) => {
+  const dateObj = new Date(date);
+
   return (
     <li
       className={` ${isDone ? "bg-card/50 border-border/50" : ""} grid [grid-template-rows:1fr_auto] gap-2 items-center bg-card border border-border p-2 rounded-xl relative z-10 transition duration-200
@@ -46,7 +48,7 @@ const LoggedTodo = ({
           className={` ${isDone ? "text-gray-500 line-through" : ""} transition duration-200 mb-[-20px] text-gray-400 w-full
                 md:mb-0`}
         >
-          {date}
+          {dateObj.toLocaleDateString()}
         </p>
         <button
           type="button"
