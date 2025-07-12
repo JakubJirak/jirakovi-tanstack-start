@@ -8,7 +8,9 @@ import { Link, createFileRoute, linkOptions } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { cs } from "date-fns/locale";
 import { and, eq } from "drizzle-orm";
+import type React from "react";
 import { useState } from "react";
+import { FaPlus } from "react-icons/fa6";
 
 export const Route = createFileRoute("/calendar")({
   component: RouteComponent,
@@ -33,6 +35,7 @@ const updateData = createServerFn({ method: "POST" })
       .execute();
     return true;
   });
+
 const fetchData = createServerFn({ method: "GET" })
   .validator((data: { userId: string; ISOdate: string }) => data)
   .handler(async ({ data }) => {
@@ -43,9 +46,27 @@ const fetchData = createServerFn({ method: "GET" })
     return todosUser;
   });
 
+const addTodo = createServerFn({ method: "POST" })
+  .validator(
+    (data: { userId: string; text: string; date: string; isDone: boolean }) =>
+      data,
+  )
+  .handler(async ({ data }) => {
+    await db
+      .insert(todos)
+      .values({
+        text: data.text,
+        date: data.date,
+        isDone: data.isDone,
+        userId: data.userId,
+      })
+      .execute();
+  });
+
 export function RouteComponent() {
   const { data: session, isPending } = authClient.useSession();
   const [date, setDate] = useState<Date | undefined>(new Date());
+  const [inpValue, setInpValue] = useState("");
 
   function toLocalISODateString(date: Date | undefined): string {
     if (date === undefined) return "";
@@ -82,6 +103,29 @@ export function RouteComponent() {
   };
 
   const dates: string[] = ["2025-07-12", "2025-07-14", "2025-07-16"];
+
+  const mutationTodos = useMutation({
+    mutationFn: addTodo,
+    onError: (err) => console.log(err),
+    onSuccess: () => refetch(),
+  });
+
+  const addUserMutation = () => {
+    mutationTodos.mutate({
+      data: {
+        text: inpValue,
+        userId: userId,
+        date: toLocalISODateString(date),
+        isDone: false,
+      },
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    addUserMutation();
+    setInpValue("");
+  };
 
   if (!session && !isPending) {
     return (
@@ -129,9 +173,29 @@ export function RouteComponent() {
           {date?.toLocaleDateString()}
         </h1>
         <div>
+          <form
+            onSubmit={handleSubmit}
+            className="flex mx-auto w-[95%] mb-8 bg-card border border-border p-2 text-xl items-center rounded-xl px-3 lg:w-full"
+          >
+            <input
+              value={inpValue}
+              type="text"
+              placeholder="Úkol..."
+              required
+              id="valInp"
+              className="px-2 focus:outline-none w-full rounded-lg"
+              onChange={(e) => setInpValue(e.target.value)}
+            />
+            <button
+              className="bg-primary flex cursor-pointer items-center justify-center min-w-10 min-h-10 rounded-full text-2xl"
+              type="submit"
+            >
+              <FaPlus />
+            </button>
+          </form>
           {data?.length === 0 && (
             <p className="text-center text-muted-foreground">
-              Pro tento den nemáte žádné poznámky
+              Přidejte pro tento den poznámku
             </p>
           )}
           {data?.length !== 0 && (

@@ -6,6 +6,7 @@ import { useState } from "react";
 import type React from "react";
 import "./reactDate.css";
 import { authClient } from "@/lib/auth-client.ts";
+import { FaPlus } from "react-icons/fa6";
 
 interface LoggedInput {
   fetchAgain: boolean;
@@ -112,16 +113,16 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
 
         <button
           onClick={() => setMobileShow(!mobileShow)}
-          className="bg-primary flex rounded-full items-center justify-center hover:bg-secondary-900 cursor-pointer transition duration-200 h-10 mb-1.5
+          className="bg-primary flex rounded-full items-center justify-center hover:bg-secondary-900 cursor-pointer transition duration-200 h-10
                     md:ml-3 md:mr-1 md:mb-0"
           type="submit"
         >
           <span className="md:hidden mr-2">Přidat</span>
           <span
-            className="hidden text-5xl font-light
-                    md:flex md:w-10 md:h-14 md:pl-1"
+            className="hidden items-center justify-center text-3xl font-light
+                    md:flex md:w-10 md:h-14"
           >
-            +
+            <FaPlus />
           </span>
         </button>
       </form>
@@ -133,8 +134,8 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
           setMobileShow(!mobileShow);
         }}
       >
-        <span className="w-17 relative flex items-center justify-center z-17 h-17 text-7xl font-light">
-          +
+        <span className="w-17 relative flex items-center justify-center z-17 h-17 text-5xl font-light">
+          <FaPlus />
         </span>
       </button>
     </>
