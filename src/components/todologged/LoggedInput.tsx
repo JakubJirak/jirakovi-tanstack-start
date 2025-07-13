@@ -33,7 +33,7 @@ const addTodo = createServerFn({ method: "POST" })
 
 const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
   const [inpValue, setInpValue] = useState("");
-  const [date, setDate] = useState<Date | undefined>(new Date("2025-06-01"));
+  const [date, setDate] = useState<Date | undefined>(new Date());
   const [mobileShow, setMobileShow] = useState(false);
   const { data: session } = authClient.useSession();
 
