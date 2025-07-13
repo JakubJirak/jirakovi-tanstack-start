@@ -12,7 +12,7 @@ const CalendarDashboard = () => {
       defaultMonth={date}
       selected={date}
       onSelect={(d) => d && setDate(d)}
-      className="rounded-2xl mt-3 w-full lg:mt-0 shadow-sm md:[--cell-size:--spacing(10)] xl:[--cell-size:--spacing(18)]"
+      className="rounded-2xl mt-3 w-full lg:mt-0"
     />
   );
 };
