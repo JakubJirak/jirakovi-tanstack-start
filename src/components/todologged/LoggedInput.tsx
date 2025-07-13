@@ -5,6 +5,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import type React from "react";
 import "./reactDate.css";
+import Calendar28 from "@/components/ui/calendar-28.tsx";
 import { authClient } from "@/lib/auth-client.ts";
 import { FaPlus } from "react-icons/fa6";
 
@@ -32,7 +33,7 @@ const addTodo = createServerFn({ method: "POST" })
 
 const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
   const [inpValue, setInpValue] = useState("");
-  const [inpDate, setInpDate] = useState("");
+  const [date, setDate] = useState<Date | undefined>(new Date("2025-06-01"));
   const [mobileShow, setMobileShow] = useState(false);
   const { data: session } = authClient.useSession();
 
@@ -44,12 +45,19 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
     onSuccess: () => setFetchAgain(!fetchAgain),
   });
 
+  function toLocalISODateString(date: Date | undefined): string {
+    if (date === undefined) return "";
+    const tzOff = date.getTimezoneOffset() * 60000;
+    const localDate = new Date(date.getTime() - tzOff);
+    return localDate.toISOString().slice(0, 10);
+  }
+
   const addUserMutation = () => {
     mutationTodos.mutate({
       data: {
         text: inpValue,
         userId: session.user.id,
-        date: inpDate,
+        date: toLocalISODateString(date),
         isDone: false,
       },
     });
@@ -58,7 +66,7 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
   const handleAdd = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addUserMutation();
-    setInpDate("");
+    setDate(undefined);
     setInpValue("");
   };
 
@@ -100,17 +108,7 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
         >
           Zadejte datum
         </label>
-        <input
-          className="mb-6 w-full bg-secondary py-2 px-2 rounded-lg focus:outline-none
-                md:w-40 md:my-0 md:mb-0"
-          placeholder="Datum..."
-          type="date"
-          required
-          id="dateinp"
-          value={inpDate}
-          onChange={(e) => setInpDate(e.target.value)}
-        />
-
+        <Calendar28 date={date} setDate={setDate} />
         <button
           onClick={() => setMobileShow(!mobileShow)}
           className="bg-primary flex rounded-full items-center justify-center hover:bg-secondary-900 cursor-pointer transition duration-200 h-10

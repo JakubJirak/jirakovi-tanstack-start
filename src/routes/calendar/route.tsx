@@ -1,5 +1,8 @@
 import LoggedTodo from "@/components/todologged/LoggedTodo.tsx";
-import { Calendar, CalendarDayButton } from "@/components/ui/calendar.tsx";
+import {
+  CalendarBig,
+  CalendarDayButton,
+} from "@/components/ui/calendar-big.tsx";
 import { db } from "@/db";
 import { todos } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
@@ -173,7 +176,7 @@ export function RouteComponent() {
 
   return (
     <div className="dark flex gap-3 lg:flex-row-reverse flex-col lg:flex-row">
-      <Calendar
+      <CalendarBig
         locale={cs}
         mode="single"
         defaultMonth={date}
