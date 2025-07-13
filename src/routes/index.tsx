@@ -5,6 +5,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo } from "react";
 import { RouteComponent as Calendar } from "../routes/calendar/route.tsx";
 import "../styles.css";
+import CalendarDashboard from "@/components/dashboard/calendar/CalendarDashboard.tsx";
 import WeatherWidget from "@/components/weather/weatherWidget/WeatherWidget.tsx";
 import { useWeatherContext } from "@/data/Context/WeatherContext.tsx";
 import { codes } from "@/data/weather-codes.ts";
@@ -48,10 +49,10 @@ function App() {
           <h1 className="mb-5 text-center text-4xl font-bold">Todolist</h1>
         </div>
         <div className="bg-card border border-border rounded-xl [grid-area:kalendar]">
-          kalendar
+          <CalendarDashboard />
         </div>
         <div className="bg-card border border-border rounded-xl [grid-area:pocasi]">
-          pocasi
+          <WeatherWidget codeData={codeData} />
         </div>
         <div className="bg-card border border-border rounded-xl p-2 [grid-area:ostatni]">
           <OthersCom />
