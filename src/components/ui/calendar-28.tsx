@@ -83,6 +83,9 @@ export default function Calendar28({ date, setDate }: CalendarProps) {
               selected={date}
               captionLayout="dropdown"
               month={month}
+              disabled={{
+                before: new Date(),
+              }}
               onMonthChange={setMonth}
               onSelect={(date) => {
                 setDate(date);
