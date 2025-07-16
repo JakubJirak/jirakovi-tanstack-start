@@ -28,13 +28,18 @@ function isValidDate(date: Date | undefined) {
 interface CalendarProps {
   date: Date | undefined;
   setDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function Calendar28({ date, setDate }: CalendarProps) {
+export default function Calendar28({
+  date,
+  setDate,
+  value,
+  setValue,
+}: CalendarProps) {
   const [open, setOpen] = React.useState(false);
-
   const [month, setMonth] = React.useState<Date | undefined>(date);
-  const [value, setValue] = React.useState(formatDate(date));
 
   return (
     <div className="flex flex-col gap-3 w-full lg:w-[180px] mb-4 lg:mb-0">

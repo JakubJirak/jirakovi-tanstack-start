@@ -33,8 +33,9 @@ const addTodo = createServerFn({ method: "POST" })
 
 const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
   const [inpValue, setInpValue] = useState("");
-  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<Date | undefined>();
   const [mobileShow, setMobileShow] = useState(false);
+  const [value, setValue] = useState("");
   const { data: session } = authClient.useSession();
 
   if (!session) return null;
@@ -66,7 +67,8 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
   const handleAdd = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addUserMutation();
-    setDate(undefined);
+    console.log(date);
+    setValue("");
     setInpValue("");
   };
 
@@ -108,7 +110,12 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
         >
           Zadejte datum
         </label>
-        <Calendar28 date={date} setDate={setDate} />
+        <Calendar28
+          date={date}
+          setDate={setDate}
+          value={value}
+          setValue={setValue}
+        />
         <button
           onClick={() => setMobileShow(!mobileShow)}
           className="bg-primary flex rounded-full items-center justify-center hover:bg-secondary-900 cursor-pointer transition duration-200 h-10
