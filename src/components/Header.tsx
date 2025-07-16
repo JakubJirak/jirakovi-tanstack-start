@@ -16,9 +16,9 @@ function Header() {
         <button
           onClick={odhlasit}
           type="button"
-          className="mr-5 bg-primary flex items-center p-2 rounded-2xl border-border border cursor-pointer hover:bg-accent transition-all duration-200"
+          className="mr-5 bg-primary flex items-center p-1.5 rounded-xl border-border border cursor-pointer hover:bg-accent transition-all duration-200"
         >
-          <FiLogOut size={30} />
+          <FiLogOut size={25} />
         </button>
       )}
 

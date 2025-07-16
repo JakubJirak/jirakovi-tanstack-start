@@ -67,6 +67,7 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
   const handleAdd = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addUserMutation();
+    setMobileShow(false);
     console.log(date);
     setValue("");
     setInpValue("");
@@ -117,7 +118,6 @@ const LoggedInput = ({ fetchAgain, setFetchAgain }: LoggedInput) => {
           setValue={setValue}
         />
         <button
-          onClick={() => setMobileShow(!mobileShow)}
           className="bg-primary flex rounded-full items-center justify-center hover:bg-secondary-900 cursor-pointer transition duration-200 h-10
                     md:ml-3 md:mr-1 md:mb-0"
           type="submit"
