@@ -16,7 +16,7 @@ function Header() {
         <button
           onClick={odhlasit}
           type="button"
-          className="mr-5 bg-secondary flex items-center p-2 rounded-2xl border-border border cursor-pointer hover:bg-accent transition-all duration-200"
+          className="mr-5 bg-primary flex items-center p-2 rounded-2xl border-border border cursor-pointer hover:bg-accent transition-all duration-200"
         >
           <FiLogOut size={30} />
         </button>
@@ -26,7 +26,7 @@ function Header() {
         <Link
           to={linkOptions({ to: "/login" }).to}
           type="button"
-          className="text-xl mr-3 bg-primary-800 flex items-center p-2.5 rounded-2xl cursor-pointer hover:bg-primary-700 transition-all duration-200"
+          className="text-xl mr-3 bg-primary flex items-center py-1 px-3 rounded-xl cursor-pointer transition-all duration-200"
         >
           Přihlásit
         </Link>
