@@ -7,7 +7,7 @@ import { db } from "@/db";
 import { todos } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Link, createFileRoute, linkOptions } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { cs } from "date-fns/locale";
 import { and, eq } from "drizzle-orm";
@@ -16,6 +16,13 @@ import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 
 export const Route = createFileRoute("/calendar")({
+  beforeLoad: ({ context }) => {
+    if (!context.session) {
+      throw redirect({
+        to: "/login",
+      });
+    }
+  },
   component: RouteComponent,
 });
 
@@ -77,7 +84,7 @@ const addTodo = createServerFn({ method: "POST" })
   });
 
 export function RouteComponent() {
-  const { data: session, isPending } = authClient.useSession();
+  const { data: session } = authClient.useSession();
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [inpValue, setInpValue] = useState("");
 
@@ -154,22 +161,6 @@ export function RouteComponent() {
   function refetchAll() {
     refetch();
     allRefetch();
-  }
-
-  if (!session && !isPending) {
-    return (
-      <div className="flex flex-col items-center">
-        <p className="text-2xl mt-3 text-center">
-          Pro přístup ke kalendáři se musíte přihlásit
-        </p>
-        <Link
-          to={linkOptions({ to: "/login" }).to}
-          className="text-2xl bg-secondary-800 py-2 px-4 rounded-2xl inline-flex mt-10 cursor-pointer hover:bg-secondary-900 transition-all duration-200"
-        >
-          Přihlásit se
-        </Link>
-      </div>
-    );
   }
 
   if (!session) return null;

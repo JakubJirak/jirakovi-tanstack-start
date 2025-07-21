@@ -1,7 +1,10 @@
 import Layout from "@/components/Layout.tsx";
+import { Button } from "@/components/ui/button.tsx";
+import { getUserSession } from "@/lib/auth-server.ts";
 import type { QueryClient } from "@tanstack/react-query";
 import {
   HeadContent,
+  Link,
   Scripts,
   createRootRouteWithContext,
 } from "@tanstack/react-router";
@@ -35,6 +38,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     ],
   }),
 
+  beforeLoad: async () => {
+    const session = await getUserSession();
+    return { session };
+  },
+
   component: () => (
     <RootDocument>
       <Layout />
@@ -44,6 +52,21 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       <TanStackQueryLayout />
     </RootDocument>
   ),
+
+  notFoundComponent: () => {
+    return (
+      <>
+        <p className="mt-10 mb-5 text-red-500 text-center">
+          Tato stránka nebyla nalezena
+        </p>
+        <div className="flex items-center justify-center">
+          <Link to={"/"}>
+            <Button>Domovská stránka</Button>
+          </Link>
+        </div>
+      </>
+    );
+  },
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
