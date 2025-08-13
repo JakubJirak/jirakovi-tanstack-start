@@ -1,4 +1,4 @@
-# Jirakovi TanStack Start
+# Dashboard aplikace
 
 **Moderní webová aplikace na platformě [TanStack Start](https://tanstack.com/start) s pokročilými funkcemi pro správu úkolů, počasí, kalendář a uživatelskou autentizaci.**
 
